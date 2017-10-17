@@ -35,7 +35,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Tabbar, TabbarItem, Group, Cell, XHeader } from 'vux'
 // import { newsNew } from '../../service/getData'
-import newsList from '/lol/src/components/newslist'
+import newsList from '../../components/newslist'
 const list = () => ['最新', '电竞', '娱乐', '版本']
 export default {
   components: {

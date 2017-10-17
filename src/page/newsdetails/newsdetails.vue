@@ -15,7 +15,7 @@
 
 <script>
 import { XHeader } from 'vux'
-import { newDetails } from '/lol/src/service/getData'
+import { newDetails } from '../../service/getData'
 export default{
   data () {
     return {

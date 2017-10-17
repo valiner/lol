@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { verNews, newNews, lplNews, etmNews } from '/lol/src/service/getData'
+import { verNews, newNews, lplNews, etmNews } from '../service/getData'
 import { Panel, Group, Radio } from 'vux'
 export default{
   data () {
@@ -89,6 +89,7 @@ export default{
       this.lastPage = newdata.data.message.lastPage
       this.currentPage = newdata.data.message.currentPage
       this.list = newdata.data.data
+      console.log(this.list)
     }
     if (this.newselected === '电竞') {
       const lpldata = await lplNews()
