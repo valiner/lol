@@ -1,0 +1,22 @@
+{
+    "school":{
+        "news":[
+        {
+            "src":"http://somedomain.somdomain/x.jpg",
+            "fallbackSrc":"http://placeholder.qiniudn.com/60x60/3cc51f/ffffff",
+            "newid": 23,
+            "title":"多拿",
+            "desc":"描述" ,
+            "meta":{
+                "source": "来源信息:duowan",
+                "date": "时间"
+            }     
+        },
+        {
+            "src":"http://somedomain.somdomain/x.jpg",
+            "fallbackSrc":"http://placeholder.qiniudn.com/60x60/3cc51f/ffffff",
+            "title":"多拿",
+            "desc":"描述"         
+        }]
+    }
+}
