@@ -1,7 +1,7 @@
-#前言
+# 前言
 一款LOL的APP，类似掌盟。VUE做前端，Laravel做API。
 
-#相关技术
+# 相关技术
 vue2 + axios + vuex + vux + vue-router + webpack + ES6/7
 
 # lol
