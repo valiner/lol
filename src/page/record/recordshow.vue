@@ -7,11 +7,11 @@
     </group>
 
      <group>
-      <x-input title="召唤师名称" :is-type="be2333" placeholder=""></x-input>
+      <x-input title="召唤师名称" :is-type="be2333" placeholder="" v-model="username"></x-input>
     </group>
 	</br>
 	<div style="float:left;position:absolute;left: 50%;margin-left: -36.3px">
-		<x-button mini>查看</x-button>
+		<x-button mini @click.native="search">查看</x-button>
 	</div>
     
   </div>
@@ -39,7 +39,7 @@
 
 <script>
 import { Tab, TabItem, Tabbar, TabbarItem, XHeader, Selector, Group, XInput, XButton } from 'vux'
-// import { newsNew } from '../../service/getData'
+// import { searchRecord } from '../../service/getData'
 export default {
   components: {
     Tab,
@@ -54,8 +54,9 @@ export default {
   },
   data () {
     return {
-      defaultValue: 'gd',
-      list: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}]
+      username: '',
+      defaultValue: 'dx1',
+      list: [{key: 'dx1', value: '艾欧尼亚'}, {key: 'dx2', value: '祖安'}, {key: 'dx3', value: '洛克萨斯'}, {key: 'dx4', value: '班德尔城'}, {key: 'dx5', value: '皮尔特沃夫'}, {key: 'dx6', value: '战争学院'}, {key: 'dx7', value: '巨神峰'}, {key: 'dx8', value: '雷瑟守备'}, {key: 'dx9', value: '裁决之地'}, {key: 'dx10', value: '黑色玫瑰'}, {key: 'dx11', value: '暗影岛'}, {key: 'dx12', value: '钢铁烈阳'}, {key: 'dx13', value: '均衡教派'}, {key: 'dx14', value: '水晶之痕'}, {key: 'dx15', value: '影流'}, {key: 'dx16', value: '守望之海'}, {key: 'dx17', value: '征服之海'}, {key: 'dx18', value: '卡拉曼达'}]
     }
   },
   async mounted () {
@@ -69,6 +70,12 @@ export default {
     // })
     // const gg = await newsNew()
     // console.log(gg)
+  },
+  methods: {
+    search () {
+      this.$router.push({ path: `/userdetails/${this.defaultValue}/${this.username}` })
+      console.log(this.username)
+    }
   }
 }
 </script>

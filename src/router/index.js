@@ -6,6 +6,7 @@ import xpanle from '@/components/panle'
 import news from '@/page/news/news'
 import newsdetails from '@/page/newsdetails/newsdetails'
 import recordshow from '@/page/record/recordshow'
+import userdetails from '@/page/record/userdetails'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/recordshow',
       name: 'recordshow',
       component: recordshow
+    },
+    {
+      path: '/userdetails/:area/:username',
+      name: 'userdetails',
+      component: userdetails
     },
     {
       path: '/newslist',
