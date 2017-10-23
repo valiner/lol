@@ -7,6 +7,8 @@ import news from '@/page/news/news'
 import newsdetails from '@/page/newsdetails/newsdetails'
 import recordshow from '@/page/record/recordshow'
 import userdetails from '@/page/record/userdetails'
+import recordlist from '@/page/record/recordlist'
+import gameshow from '@/page/game/gameshow'
 
 Vue.use(Router)
 
@@ -28,7 +30,17 @@ export default new Router({
       component: recordshow
     },
     {
-      path: '/userdetails/:area/:username',
+      path: '/gameshow',
+      name: 'gameshow',
+      component: gameshow
+    },
+    {
+      path: '/recordlist/:areaid/:userid',
+      name: 'recordlist',
+      component: recordlist
+    },
+    {
+      path: '/userdetails/:areaid/:userid',
       name: 'userdetails',
       component: userdetails
     },

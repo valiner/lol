@@ -16,7 +16,7 @@
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">咨询</span>
       </tabbar-item>
-      <tabbar-item show-dot>
+      <tabbar-item link="gameshow">
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">赛事</span>
       </tabbar-item>

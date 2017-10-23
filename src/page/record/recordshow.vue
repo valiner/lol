@@ -73,8 +73,19 @@ export default {
   },
   methods: {
     search () {
-      this.$router.push({ path: `/userdetails/${this.defaultValue}/${this.username}` })
-      console.log(this.username)
+      const that = this
+      this.$axios.get('/api/searchRecord/' + this.defaultValue + '/' + this.username).then(function (response) {
+        console.log(response.data)
+        if (!response.data) {
+          alert('服务器繁忙稍后再试')
+        } else if (response.data.status === 0) {
+          let areaid = response.data.data.areaid
+          let userid = response.data.data.user_id
+          that.$router.push({ path: `/userdetails/${areaid}/${userid}` })
+        } else {
+          alert(response.data.message)
+        }
+      })
     }
   }
 }

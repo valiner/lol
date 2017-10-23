@@ -1,5 +1,7 @@
 <template>
   <div style="position: relative">
+  <div v-if='reload'><button @click='load'>刷新</button></div>
+  <div v-else>
   <x-header :left-options="{showBack: true}" :right-options="{showMore: true}" @on-click-more="showMenus = true">{{username}}</x-header>
   <div class="main_usd">
     <div class="usd_top">
@@ -7,14 +9,27 @@
       <p class="center"><img :src="iconurl"></p>
       </blur>
       <div class="usd_info">
-        <span class="sp1">{{datalist.game_zone.alias}}:{{datalist.pn}}</span>
-        <span class="sp2">段位：{{ranklist[datalist.tier-1]}}{{datalist.rank}}</span>
+        <span class="sp1">{{datalist.player_list[0].game_zone.alias}}:{{datalist.player_list[0].pn}}</span>
+        <span class="sp2">段位：{{datalist.player_list[0].formatted_ranked_history.s7.t_zh}}{{datalist.player_list[0].formatted_ranked_history.s7.r_zh}}</span>
       </div>
     </div>
-    <div class="usd_history" v-if='datalist.formatted_ranked_history'>
+    <div class="usd_history" v-if='datalist.player_list[0].formatted_ranked_history'>
       <group label-width="5em" title="战绩概要">
-      <cell title="S7单双排" value="">胜场：{{datalist.formatted_ranked_history.s7.w}}  总场: {{datalist.formatted_ranked_history.s7.w+datalist.formatted_ranked_history.s7.lo}} 段位:{{ranklist[datalist.tier-1]}}{{datalist.rank}}</cell>
-      <cell title="s6排位" value="">胜场：{{datalist.formatted_ranked_history.s6.w}}  总场: {{datalist.formatted_ranked_history.s7.w+datalist.formatted_ranked_history.s6.lo}} 段位:{{ranklist[datalist.formatted_ranked_history.s6.t-1]}}</cell>
+      <cell title="匹配" value="">胜场：{{datalist.player_list[0].total_win_normal}}  总场: {{datalist.player_list[0].total_win_normal+datalist.player_list[0].total_lose_normal}} </cell>
+      <cell title="S7单双排位" value="">胜场：{{datalist.player_list[0].formatted_ranked_history.s7.w}}  总场: {{datalist.player_list[0].formatted_ranked_history.s7.w+datalist.player_list[0].formatted_ranked_history.s7.lo}} 段位:{{datalist.player_list[0].formatted_ranked_history.s7.t_zh}}{{datalist.player_list[0].formatted_ranked_history.s7.r_zh}}</cell>
+      <cell title="S7灵活排位" value="">胜场：{{datalist.player_list[0].formatted_ranked_history.flex_sr.w}}  总场: {{datalist.player_list[0].formatted_ranked_history.flex_sr.w+datalist.player_list[0].formatted_ranked_history.flex_sr.lo}} 段位:{{datalist.player_list[0].formatted_ranked_history.flex_sr.t_zh}}{{datalist.player_list[0].formatted_ranked_history.flex_sr.r_zh}}</cell>
+      <cell title="s6排位" value="">胜场：{{datalist.player_list[0].formatted_ranked_history.s6.w}}  总场: {{datalist.player_list[0].formatted_ranked_history.s7.w+datalist.player_list[0].formatted_ranked_history.s6.lo}} 段位:{{datalist.player_list[0].formatted_ranked_history.s6.t_zh}}{{datalist.player_list[0].formatted_ranked_history.s6.r_zh}}</cell>
+     </group>    
+    </div>
+    <div>
+     <group label-width='5em' title='最近战绩' v-if='datalist.player_list[0].game_recent_list'>
+       <game-list :gamedata='datalist.player_list[0].game_recent_list'></game-list>
+       <div class="lookall" @click='lookall'>
+         查看全部
+       </div>
+     </group>
+     <group label-width='5em' title='最近战绩' v-else>
+        最近无比赛记录
      </group>
       
     </div>
@@ -22,18 +37,17 @@
     
   </div>
   </div>
+  </div>
 </template>
 
 <script>
-import { Tab, TabItem, Tabbar, TabbarItem, XHeader, Selector, Group, XInput, XButton, Blur, Cell } from 'vux'
+import { XHeader, Selector, Group, XInput, XButton, Blur, Cell } from 'vux'
 // import { searchRecord } from '../../service/getData'
+import gameList from '../../components/gamelist'
 const ranklist = () => ['青铜', '白银', '黄金', '白金', '钻石', '大师', '王者']
 export default {
   components: {
-    Tab,
-    TabItem,
-    Tabbar,
-    TabbarItem,
+    gameList,
     Selector,
     Group,
     XInput,
@@ -44,25 +58,34 @@ export default {
   },
   data () {
     return {
-      area: '',
-      username: '',
+      areaid: '',
+      userid: '',
       datalist: {},
       iconurl: '',
-      ranklist: ranklist()
+      ranklist: ranklist(),
+      reload: false
     }
   },
   mounted () {
-    this.area = this.$route.params.area
-    this.username = this.$route.params.username
+    this.areaid = this.$route.params.areaid
+    this.userid = this.$route.params.userid
+    // dx3/2955752234
+    // this.areaid = 'dx3'
+    // this.userid = 2955752234
+    console.log(this.areaid)
     const that = this
-    this.$axios.get('/api/searchRecord/' + this.area + '/' + this.username).then(function (response) {
+    this.$axios.get('/api/lsDetails/' + this.areaid + '/' + this.userid + '/').then(function (response) {
       console.log(response.data)
-      if (response.data.status === 0) {
+      if (!response.data) {
+        alert('服务器繁忙，稍后再试')
+      } else if (response.data.status === 0) {
         that.datalist = response.data.data
-        that.iconurl = 'http://static.lolbox.duowan.com/images/profile_icons/' + that.datalist.icon + '.jpg'
+        that.iconurl = 'http://static.lolbox.duowan.com/images/profile_icons/' + that.datalist.player_list[0].icon + '.jpg'
+        that.reload = false
         // console.log(this.datalist)
       } else {
-        alert(response.data.message)
+        that.reload = true
+        console.log(response.data.message)
       }
     })
     .catch(function (error) {
@@ -70,6 +93,12 @@ export default {
     })
   },
   methods: {
+    lookall: function (argument) {
+      this.$router.push({ path: `/recordlist/${this.areaid}/${this.userid}` })
+    },
+    load: function (argument) {
+      window.location.reload()
+    }
   }
 }
 </script>
@@ -78,6 +107,12 @@ export default {
 @import '~vux/src/styles/1px.less';
 @import '~vux/src/styles/center.less';
 
+.lookall{
+  height: 50px;
+  text-align:center;
+  font-size:16px;
+  padding-top:25px;
+}
 .center {
   text-align: center;
   padding-top: 20px;
