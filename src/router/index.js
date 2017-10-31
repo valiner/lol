@@ -9,6 +9,9 @@ import recordshow from '@/page/record/recordshow'
 import userdetails from '@/page/record/userdetails'
 import recordlist from '@/page/record/recordlist'
 import gameshow from '@/page/game/gameshow'
+import matchdetails from '@/page/game/matchdetails'
+import videopaly from '@/page/common/videopaly'
+import hero from '@/page/hero/hero'
 
 Vue.use(Router)
 
@@ -25,6 +28,11 @@ export default new Router({
       component: news
     },
     {
+      path: '/hero',
+      name: 'hero',
+      component: hero
+    },
+    {
       path: '/recordshow',
       name: 'recordshow',
       component: recordshow
@@ -33,6 +41,16 @@ export default new Router({
       path: '/gameshow',
       name: 'gameshow',
       component: gameshow
+    },
+    {
+      path: '/videopaly/:gvideo_url',
+      name: 'videopaly',
+      component: videopaly
+    },
+    {
+      path: '/matchdetails/:game_id',
+      name: 'matchdetails',
+      component: matchdetails
     },
     {
       path: '/recordlist/:areaid/:userid',

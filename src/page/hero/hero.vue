@@ -6,58 +6,32 @@
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item">{{item}}</tab-item>
       </tab>
           <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
-            <news-list :newselected="newselected" :listname='list'></news-list> 
+            <hero-list :newselected="newselected" :listname='list'></hero-list> 
           </div>
 
     </div>
 
-    <tabbar>
-      <tabbar-item selected>
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">咨询</span>
-      </tabbar-item>
-      <tabbar-item link="gameshow">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">赛事</span>
-      </tabbar-item>
-      <tabbar-item link="recordshow">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">战绩</span>
-      </tabbar-item>
-       <tabbar-item link="hero">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">资料</span>
-      </tabbar-item>
-      <tabbar-item badge="2">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">其他</span>
-      </tabbar-item>
-    </tabbar>
   </div>
 </template>
 
 <script>
-import { Tab, TabItem, Swiper, SwiperItem, Tabbar, TabbarItem, Group, Cell, XHeader } from 'vux'
+import { Tab, TabItem, Tabbar, TabbarItem, XHeader } from 'vux'
 // import { newsNew } from '../../service/getData'
-import newsList from '../../components/newslist'
-const list = () => ['最新', '电竞', '娱乐', '版本']
+import heroList from '../../components/herolist'
+const list = () => ['战士', '法师', '刺客', '坦克', '射手', '辅助']
 export default {
   components: {
     Tab,
     TabItem,
-    Swiper,
-    SwiperItem,
     Tabbar,
     TabbarItem,
-    Group,
-    Cell,
     XHeader,
-    newsList
+    heroList
   },
   data () {
     return {
       list2: list(),
-      newselected: '最新',
+      newselected: '战士',
       index: 0
     }
   },
