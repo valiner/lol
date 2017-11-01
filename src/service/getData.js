@@ -16,3 +16,5 @@ export const gamedetails = gameid => axios.get('/api/gameDetails/' + gameid)
 export const gvideo = gameid => axios.get('/api/gvideo/' + gameid)
 export const herotype = typeid => axios.get('/api/hero/type/' + typeid)
 export const herodetails = heroid => axios.get('/api/hero/' + heroid)
+export const goodsdetails = goodsid => axios.get('/api/goods/' + goodsid)
+

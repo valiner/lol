@@ -13,6 +13,8 @@ import matchdetails from '@/page/game/matchdetails'
 import videopaly from '@/page/common/videopaly'
 import hero from '@/page/hero/hero'
 import herodetails from '@/page/hero/herodetails'
+import goods from '@/page/goods/goods'
+import goodsdetails from '@/page/goods/goodsdetails'
 
 Vue.use(Router)
 
@@ -37,6 +39,16 @@ export default new Router({
       path: '/herodetails/:heroid',
       name: 'herodetails',
       component: herodetails
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: goods
+    },
+    {
+      path: '/goodsdetails/:goodsid',
+      name: 'goodsdetails',
+      component: goodsdetails
     },
     {
       path: '/recordshow',

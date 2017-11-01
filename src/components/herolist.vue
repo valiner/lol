@@ -1,16 +1,15 @@
 <template>
 	<div>
     	<group-title> 英雄列表 </group-title>
-      <router-link v-for='item in herolist' class='heroitem' :to="'/herodetails/' + item.hero_id">
-        <span class="himg"><img :src="item.hero_img" width="64" height="64"></span>
+      <router-link v-for='item in herolist' class='heroitem' :to="tourl + item.id">
+        <span class="himg"><img :src="item.img" width="64" height="64"></span>
         </br>
-        <span class="hname">{{item.hero_name}}</span>
+        <span class="hname">{{item.name}}</span>
       </router-link>
 	</div>
 </template>
 
 <script>
-import { herotype } from '../service/getData'
 import { Panel, Group, Radio, Grid, GridItem, GroupTitle } from 'vux'
 export default{
   data () {
@@ -26,32 +25,14 @@ export default{
     GridItem,
     GroupTitle
   },
-  props: ['newselected'],
+  props: ['selectedurl', 'tourl'],
   async mounted () {
-    if (this.newselected === '战士') {
-      const hero = await herotype(0)
-      this.herolist = hero.data.data
-    }
-    if (this.newselected === '法师') {
-      const hero = await herotype(1)
-      this.herolist = hero.data.data
-    }
-    if (this.newselected === '刺客') {
-      const hero = await herotype(2)
-      this.herolist = hero.data.data
-    }
-    if (this.newselected === '坦克') {
-      const hero = await herotype(3)
-      this.herolist = hero.data.data
-    }
-    if (this.newselected === '射手') {
-      const hero = await herotype(4)
-      this.herolist = hero.data.data
-    }
-    if (this.newselected === '辅助') {
-      const hero = await herotype(5)
-      this.herolist = hero.data.data
-    }
+    this.$axios.get(this.selectedurl).then((response) => {
+      this.herolist = response.data.data
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   }
 }
 </script>

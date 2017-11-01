@@ -28,7 +28,7 @@
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">资料</span>
       </tabbar-item>
-      <tabbar-item badge="2">
+      <tabbar-item link="goods">
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">其他</span>
       </tabbar-item>
