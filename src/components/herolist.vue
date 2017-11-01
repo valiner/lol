@@ -1,11 +1,11 @@
 <template>
 	<div>
     	<group-title> 英雄列表 </group-title>
-      <div v-for='item in herolist' class='heroitem'>
+      <router-link v-for='item in herolist' class='heroitem' :to="'/herodetails/' + item.hero_id">
         <span class="himg"><img :src="item.hero_img" width="64" height="64"></span>
         </br>
         <span class="hname">{{item.hero_name}}</span>
-      </div>
+      </router-link>
 	</div>
 </template>
 
@@ -26,11 +26,7 @@ export default{
     GridItem,
     GroupTitle
   },
-  methods: {
-  },
   props: ['newselected'],
-  watch: {
-  },
   async mounted () {
     if (this.newselected === '战士') {
       const hero = await herotype(0)
