@@ -10,7 +10,7 @@
           </div>
 
     </div>
-
+ 
     <tabbar>
       <tabbar-item selected>
         <img slot="icon" src="../../assets/logo.png">
@@ -24,13 +24,15 @@
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">战绩</span>
       </tabbar-item>
-       <tabbar-item link="hero">
+       <tabbar-item link="data">
         <img slot="icon" src="../../assets/logo.png">
         <span slot="label">资料</span>
       </tabbar-item>
-      <tabbar-item link="goods">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">其他</span>
+      <tabbar-item link="tongji">
+       <icon slot="icon" icon-style="iconf" icon-class="fuwurizhi"></icon>
+        <span slot="label">统计
+        </span>
+       
       </tabbar-item>
     </tabbar>
   </div>
@@ -38,8 +40,8 @@
 
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Tabbar, TabbarItem, Group, Cell, XHeader } from 'vux'
-// import { newsNew } from '../../service/getData'
 import newsList from '../../components/newslist'
+import icon from '../common/icon'
 const list = () => ['最新', '电竞', '娱乐', '版本']
 export default {
   components: {
@@ -52,7 +54,8 @@ export default {
     Group,
     Cell,
     XHeader,
-    newsList
+    newsList,
+    icon
   },
   data () {
     return {
@@ -76,9 +79,18 @@ export default {
 }
 </script>
 
+
 <style lang="less" scoped>
 @import '~vux/src/styles/1px.less';
 @import '~vux/src/styles/center.less';
+
+.iconf{
+    width: 27px; 
+    height: 27px;
+    vertical-align: -0.15em;
+    fill: #bfcbd9;
+    overflow: hidden;
+}
 
 .weui-tabbar{
   position:fixed;

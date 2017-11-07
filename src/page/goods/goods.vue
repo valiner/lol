@@ -6,7 +6,7 @@
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item">{{item}}</tab-item>
       </tab>
           <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
-            <hero-list :selectedurl="selectedurl" :tourl="'/goodsdetails/'"></hero-list> 
+            <data-list :selectedurl="selectedurl" :tourl="'/goodsdetails/'"></data-list> 
           </div>
 
     </div>
@@ -17,7 +17,7 @@
 <script>
 import { Tab, TabItem, Tabbar, TabbarItem, XHeader } from 'vux'
 // import { newsNew } from '../../service/getData'
-import heroList from '../../components/herolist'
+import dataList from '../../components/datalist'
 const list = () => ['攻击', '魔法', '防御', '移动', '工具', '其他']
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
     Tabbar,
     TabbarItem,
     XHeader,
-    heroList
+    dataList
   },
   data () {
     return {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-    	<group-title> 英雄列表 </group-title>
+    	<group-title>  </group-title>
       <router-link v-for='item in herolist' class='heroitem' :to="tourl + item.id">
         <span class="himg"><img :src="item.img" width="64" height="64"></span>
         </br>

@@ -15,6 +15,9 @@ import hero from '@/page/hero/hero'
 import herodetails from '@/page/hero/herodetails'
 import goods from '@/page/goods/goods'
 import goodsdetails from '@/page/goods/goodsdetails'
+import skill from '@/page/skill/skill'
+import skilldetails from '@/page/skill/skilldetails'
+import data from '@/page/data/data'
 
 Vue.use(Router)
 
@@ -31,7 +34,12 @@ export default new Router({
       component: news
     },
     {
-      path: '/hero',
+      path: '/data',
+      name: 'data',
+      component: data
+    },
+    {
+      path: '/dtype/1',
       name: 'hero',
       component: hero
     },
@@ -41,7 +49,7 @@ export default new Router({
       component: herodetails
     },
     {
-      path: '/goods',
+      path: '/dtype/2',
       name: 'goods',
       component: goods
     },
@@ -49,6 +57,16 @@ export default new Router({
       path: '/goodsdetails/:goodsid',
       name: 'goodsdetails',
       component: goodsdetails
+    },
+    {
+      path: '/dtype/3',
+      name: 'skill',
+      component: skill
+    },
+    {
+      path: '/skilldetails/:skillid',
+      name: 'skilldetails',
+      component: skilldetails
     },
     {
       path: '/recordshow',
