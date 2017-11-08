@@ -4,15 +4,12 @@
     <group>
       <selector title="位置" :options="positionlist" v-model="dposition" @on-change="onchange"></selector>
     </group>
-    <div>
-      <x-table class="listtable">
+    <div class="listtable">
+      <x-table class="table t1">
         <thead>
           <tr>
             <th></th>
             <th>英雄</th>
-            <th v-for="item in th" @click="order(item)" :class="{active : selectitem == item}">
-              {{item}}
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -28,12 +25,39 @@
             
             </div> 
             </td>
-            <td>{{(item.s_winpercent*100).toFixed(2)}}</td>
-            <td>{{(item.s_playpercent*100).toFixed(2)}}</td>
-            <td>{{(item.s_banrate*100).toFixed(2)}}</td>
-    
           </tr>
         </tbody>
+      </x-table>
+    </div>
+
+    <div class='datatable'>
+
+      <x-table class="table t2">
+        <thead>
+          <tr>
+            <th v-for="item in th" @click="order(item)" :class="{active : selectitem == item}">
+              {{item}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in showlist">
+            <td>{{(item.s_winpercent*100).toFixed(2)}}%</td>
+            <td>{{(item.s_playpercent*100).toFixed(2)}}%</td>
+            <td>{{(item.s_banrate*100).toFixed(2)}}%</td>
+            <td>{{item.s_kills.toFixed(2)}}</td>
+            <td>{{item.s_deaths.toFixed(2)}}</td>
+            <td>{{item.s_assists.toFixed(2)}}</td>
+            <td>{{item.s_totaldamagedeal.toFixed(0)}}</td>
+            <td>{{item.s_totaltaken.toFixed(0)}}</td>
+            <td>{{item.s_totalheal.toFixed(0)}}</td>
+            <td>{{item.s_largeskill.toFixed(0)}}</td>
+            <td>{{item.s_minionskill.toFixed(0)}}</td>
+            <td>{{item.s_gold.toFixed(0)}}</td>
+            <td>{{item.s_overallpositionchange.toFixed(0)}}</td>
+          </tr>
+        </tbody>
+
       </x-table>
     </div>
      
@@ -43,7 +67,7 @@
 <script>
 import { Group, Selector, XHeader, XTable } from 'vux'
 import { tongji } from '../../service/getData'
-const th = () => ['胜率', '登场', '被禁']
+const th = () => ['胜率', '登场', '被禁', '击杀', '死亡', '助攻', '造成伤害', '承受伤害', '总治疗量', '场均最大连杀','补刀数', '金钱', '排名变化']
 export default {
   components: {
     Group,
@@ -60,7 +84,7 @@ export default {
       dposition: 'p6',
       positionlist: [{key: 'p1', value: '上单'}, {key: 'p2', value: '打野'}, {key: 'p3', value: '中单'}, {key: 'p4', value: '辅助'}, {key: 'p5', value: '射手'}, {key: 'p6', value: '全部'}],
       yx: {p1: 'Top', p2: 'Jungle', p3: 'Middle', p4: 'Support', p5: 'ADC', p6: '全部'},
-      sortyx: {'胜率':'s_winpercent', '登场':'s_playpercent', '被禁':'s_banrate'}
+      sortyx: {'胜率':'s_winpercent', '登场':'s_playpercent', '被禁':'s_banrate', '击杀':'s_kills', '死亡':'s_deaths', '助攻':'s_assists', '造成伤害': 's_totaldamagedeal', '承受伤害':'"s_totaltaken', '总治疗量':'s_totalheal', '场均最大连杀':'s_largeskill','补刀数':'s_minionskill', '金钱':'s_gold', '排名变化':'s_overallpositionchange'}
     }
   },
   methods: {
@@ -101,15 +125,26 @@ export default {
 
 <style lang="less" scoped>
   .listtable tr td{
-    text-align: left;
   }
   .listtable{
-    line-height: 20px;
+    
+    float:left;
+  }
+  .datatable{
+   float:right;
+   width:200px;
+   overflow: scroll;
   }
   .fonts{
     font-size: 10px;
   }
   .active{
     color:#b21c30;
+  }
+  .table{
+    line-height: 20px;
+  }
+  .table th{
+    height: 30px;
   }
 </style>
