@@ -19,4 +19,5 @@ export const herodetails = heroid => axios.get('/api/hero/' + heroid)
 export const goodsdetails = goodsid => axios.get('/api/goods/' + goodsid)
 export const dtype = () => axios.get('/api/dtype')
 export const skilldetails = skillid => axios.get('/api/skill/' + skillid)
+export const tongji = () => axios.get('/api/statistics')
 

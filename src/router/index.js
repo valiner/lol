@@ -18,6 +18,7 @@ import goodsdetails from '@/page/goods/goodsdetails'
 import skill from '@/page/skill/skill'
 import skilldetails from '@/page/skill/skilldetails'
 import data from '@/page/data/data'
+import tongji from '@/page/tongji/tongji'
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/data',
       name: 'data',
       component: data
+    },
+    {
+      path: '/tongji',
+      name: 'tongji',
+      component: tongji
     },
     {
       path: '/dtype/1',
