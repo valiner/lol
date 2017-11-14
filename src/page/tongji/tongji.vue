@@ -4,8 +4,10 @@
     <group>
       <selector title="位置" :options="positionlist" v-model="dposition" @on-change="onchange"></selector>
     </group>
-    <div class="listtable">
-      <x-table class="table t1">
+
+    <div class='tmain'>
+      <div class="listtable">
+      <x-table class="table t1" :cell-bordered="false" :content-bordered="false" border="0">
         <thead>
           <tr>
             <th></th>
@@ -15,7 +17,7 @@
         <tbody>
           <tr v-for="(item,index) in showlist">
              <td>
-               {{index}}
+               {{index+1}}
              </td>
             <td>
             <div style="float: left;padding:5px"><img :src="item.s_img" width="32" height="32"></div>
@@ -32,7 +34,7 @@
 
     <div class='datatable'>
 
-      <x-table class="table t2">
+      <x-table class="table t2" :cell-bordered="false" :content-bordered="false">
         <thead>
           <tr>
             <th v-for="item in th" @click="order(item)" :class="{active : selectitem == item}">
@@ -60,6 +62,8 @@
 
       </x-table>
     </div>
+    </div>
+    
      
   </div>
 </template>
@@ -127,12 +131,14 @@ export default {
   .listtable tr td{
   }
   .listtable{
-    
-    float:left;
+   float: left;
+  }
+  .tmain{
+     margin-top:10px;
   }
   .datatable{
    float:right;
-   width:200px;
+   width:50%;
    overflow: scroll;
   }
   .fonts{
@@ -143,8 +149,40 @@ export default {
   }
   .table{
     line-height: 20px;
+    font-size:10px;
+
   }
   .table th{
     height: 30px;
+    width: 20px;
   }
+  .t2{
+    table-layout:fixed;
+  }
+  .t2 th,.t2 td{
+    width:50px;
+    font-size:10px;
+  }
+  .t1 th{
+    height:40px;
+  }
+  .t1 td{
+    text-align: left;
+  }
+  .table td{
+    height:50px
+  }
+  .t1 tr td:first-child,.t1 th:first-child{
+    width:20px;
+    font-size:10px;
+    text-align:center;
+  }
+  .t1 tr td:last-child,.t1 last:first-child{
+    width:125px;
+  }
+  .vux-table td, .vux-table th {
+    border-left: t;
+    border-yop: 0;
+}
+
 </style>
