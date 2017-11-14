@@ -13,26 +13,26 @@
  
     <tabbar>
       <tabbar-item selected>
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">咨询</span>
+        <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
+        <span slot="label">资讯</span>
       </tabbar-item>
       <tabbar-item link="gameshow">
-        <img slot="icon" src="../../assets/logo.png">
+        <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
         <span slot="label">赛事</span>
       </tabbar-item>
       <tabbar-item link="recordshow">
-        <img slot="icon" src="../../assets/logo.png">
+        <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
         <span slot="label">战绩</span>
       </tabbar-item>
        <tabbar-item link="data">
-        <img slot="icon" src="../../assets/logo.png">
+         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
         <span slot="label">资料</span>
       </tabbar-item>
       <tabbar-item link="tongji">
-       <icon slot="icon" icon-style="iconf" icon-class="fuwurizhi"></icon>
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
         <span slot="label">统计
         </span>
-       
+      
       </tabbar-item>
     </tabbar>
   </div>
@@ -84,23 +84,8 @@ export default {
 @import '~vux/src/styles/1px.less';
 @import '~vux/src/styles/center.less';
 
-.iconf{
-    width: 27px; 
-    height: 27px;
-    vertical-align: -0.15em;
-    fill: #bfcbd9;
-    overflow: hidden;
-}
-
 .weui-tabbar{
   position:fixed;
-}
-.panel-new{
-  padding-top:83px;
-  padding-bottom:77px;
-  height: 100%;
-  position: relative;
-  overflow: auto;
 }
 .vux-header{
     width: 100%;
@@ -109,30 +94,20 @@ export default {
     top: 0px;
     z-index: 100;
 }
+
+.panel-new{
+  padding-top:83px;
+  padding-bottom:77px;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
 .vux-tab {
    width: 100%;
     position: fixed;
     left: 0px;
     top: 40px;
     z-index: 100;
-}
-.box {
-  padding: 15px;
-}
-.active-6-1 {
-  color: rgb(252, 55, 140) !important;
-  border-color: rgb(252, 55, 140) !important;
-}
-.active-6-2 {
-  color: #04be02 !important;
-  border-color: #04be02 !important;
-}
-.active-6-3 {
-  color: rgb(55, 174, 252) !important;
-  border-color: rgb(55, 174, 252) !important;
-}
-.tab-swiper {
-  background-color: #fff;
-  height: 100px;
 }
 </style>

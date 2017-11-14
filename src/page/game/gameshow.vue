@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<x-header :left-options="{showBack: true}" :right-options="{showMore: true}" @on-click-more="showMenus = true">全部赛事</x-header>
+		<x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">全部赛事</x-header>
     <div class='main'>
 		<div v-for="item in gamesdata">
 		    <div class="title">{{item[0].game_date}}</div>
@@ -9,21 +9,27 @@
 	</div>
 
      <tabbar>
-      <tabbar-item>
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">咨询</span>
+      <tabbar-item link="news">
+        <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
+        <span slot="label">资讯</span>
       </tabbar-item>
-      <tabbar-item link="gameshow" selected>
-        <img slot="icon" src="../../assets/logo.png">
+      <tabbar-item  selected>
+        <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
         <span slot="label">赛事</span>
       </tabbar-item>
       <tabbar-item link="recordshow">
-        <img slot="icon" src="../../assets/logo.png">
+        <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
         <span slot="label">战绩</span>
       </tabbar-item>
-      <tabbar-item badge="2">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">其他</span>
+       <tabbar-item link="data">
+         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
+        <span slot="label">资料</span>
+      </tabbar-item>
+      <tabbar-item link="tongji">
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+        <span slot="label">统计
+        </span>
+      
       </tabbar-item>
     </tabbar>
 
@@ -34,6 +40,7 @@
 import { XHeader, Tabbar, TabbarItem } from 'vux'
 import { gameshow } from '../../service/getData'
 import matchList from '../../components/matchlist'
+import icon from '../common/icon'
 export default {
   data () {
     return {
@@ -44,7 +51,8 @@ export default {
     XHeader,
     matchList,
     Tabbar,
-    TabbarItem
+    TabbarItem,
+    icon
   },
   async mounted () {
     const games = await gameshow()

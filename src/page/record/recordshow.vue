@@ -16,22 +16,28 @@
     
   </div>
 
-    <tabbar>
-      <tabbar-item>
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">咨询</span>
+     <tabbar>
+      <tabbar-item link="news">
+        <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
+        <span slot="label">资讯</span>
       </tabbar-item>
-      <tabbar-item show-dot>
-        <img slot="icon" src="../../assets/logo.png">
+      <tabbar-item  link='gameshow'>
+        <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
         <span slot="label">赛事</span>
       </tabbar-item>
-      <tabbar-item selected link="recordshow">
-        <img slot="icon" src="../../assets/logo.png">
+      <tabbar-item selected>
+        <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
         <span slot="label">战绩</span>
       </tabbar-item>
-      <tabbar-item badge="2">
-        <img slot="icon" src="../../assets/logo.png">
-        <span slot="label">其他</span>
+       <tabbar-item link="data">
+         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
+        <span slot="label">资料</span>
+      </tabbar-item>
+      <tabbar-item link="tongji">
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+        <span slot="label">统计
+        </span>
+      
       </tabbar-item>
     </tabbar>
   </div>
@@ -39,6 +45,7 @@
 
 <script>
 import { Tab, TabItem, Tabbar, TabbarItem, XHeader, Selector, Group, XInput, XButton } from 'vux'
+import icon from '../common/icon'
 // import { searchRecord } from '../../service/getData'
 export default {
   components: {
@@ -50,7 +57,8 @@ export default {
     Group,
     XInput,
     XButton,
-    XHeader
+    XHeader,
+    icon
   },
   data () {
     return {

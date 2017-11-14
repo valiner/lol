@@ -32,6 +32,7 @@
       </x-table>
     </div>
 
+    <div class="link"></div>
     <div class='datatable'>
 
       <x-table class="table t2" :cell-bordered="false" :content-bordered="false">
@@ -132,14 +133,19 @@ export default {
   }
   .listtable{
    float: left;
+  }  
+  .link{
+    border-bottom: 1px solid #C7C7C7;
   }
   .tmain{
      margin-top:10px;
+     
   }
   .datatable{
    float:right;
    width:50%;
    overflow: scroll;
+   padding-top:1px;
   }
   .fonts{
     font-size: 10px;
@@ -150,6 +156,7 @@ export default {
   .table{
     line-height: 20px;
     font-size:10px;
+     border-top: 0;
 
   }
   .table th{
@@ -180,9 +187,12 @@ export default {
   .t1 tr td:last-child,.t1 last:first-child{
     width:125px;
   }
-  .vux-table td, .vux-table th {
-    border-left: t;
-    border-yop: 0;
-}
+  .vux-table td:before, .vux-table th:before{
+    border-bottom: 0;
+    
+  }
+   .vux-table:after{
+    border-top: 0;
+   }
 
 </style>

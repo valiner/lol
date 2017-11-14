@@ -8,18 +8,44 @@
         <span class="hname">{{item.dtype_name}}</span>
    	  </router-link>
     </div>
-123 <icon icon-style="iconf" icon-class="fuwurizhi"></icon>
+
+    <tabbar>
+      <tabbar-item link="news">
+        <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
+        <span slot="label">资讯</span>
+      </tabbar-item>
+      <tabbar-item  link='gameshow'>
+        <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
+        <span slot="label">赛事</span>
+      </tabbar-item>
+      <tabbar-item selected>
+        <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
+        <span slot="label">战绩</span>
+      </tabbar-item>
+       <tabbar-item link="data">
+         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
+        <span slot="label">资料</span>
+      </tabbar-item>
+      <tabbar-item link="tongji">
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+        <span slot="label">统计
+        </span>
+      
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 
 <script>
-import { XHeader } from 'vux'
+import { XHeader, TabItem, Tabbar } from 'vux'
 import { dtype } from '../../service/getData'
 import icon from '../common/icon'
 export default {
   components: {
     XHeader,
-    icon
+    icon,
+    TabItem, 
+    Tabbar
   },
   data () {
     return {

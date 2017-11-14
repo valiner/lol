@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import './assets/iconfont'
+import './style/common.less'
 
 Vue.prototype.$axios = axios
 Vue.prototype.$routers = router
