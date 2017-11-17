@@ -29,10 +29,13 @@ import tongji from '@/page/tongji/tongji'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
+      redirect: '/showindex'
+    },
+    {
+      path: '/showindex',
       name: 'showindex',
       component: showindex,
       children: [{

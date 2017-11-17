@@ -4,7 +4,7 @@
   <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">资讯</x-header>
     <div>
        <tab :line-width=2 active-color='#fc378c' v-model="index">
-        <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item"><router-link :to="'newslist'+(index+1)">{{item}}</router-link></tab-item>
+        <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item"><router-link :to="'newslist'+(index+1)" class="full">{{item}}</router-link></tab-item>
       </tab>
     <!--       <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
           <keep-alive>
@@ -15,9 +15,9 @@
           <div class="panel-new">
 
            <keep-alive >
-      <router-view v-if="$route.meta.keepAlive"></router-view>
-  </keep-alive>
-  <router-view v-if="!$route.meta.keepAlive"></router-view>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
  
           </div>
 
@@ -73,7 +73,11 @@ export default {
 <style lang="less" scoped>
 @import '~vux/src/styles/1px.less';
 @import '~vux/src/styles/center.less';
-
+.full{
+  display: block;
+  width:100%;
+  height:100%;
+}
 .weui-tabbar{
   position:fixed;
 }
