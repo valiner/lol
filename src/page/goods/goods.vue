@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative">
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">资讯</x-header>
+  <x-header :left-options="{showBack: true}" :right-options="{showMore: true}" @on-click-more="showMenus = true">物品</x-header>
     <div>
        <tab :line-width=2 active-color='#fc378c' v-model="index">
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item">{{item}}</tab-item>

@@ -1,6 +1,8 @@
 <template>
   <div style="position: relative">
   <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">统计</x-header>
+  <loading class="loading" v-if="showloading"></loading>
+  <div class='main' v-else>
     <group>
       <selector title="位置" :options="positionlist" v-model="dposition" @on-change="onchange"></selector>
     </group>
@@ -64,25 +66,33 @@
       </x-table>
     </div>
     </div>
+    </div>
     
-     
+
   </div>
 </template>
 
 <script>
-import { Group, Selector, XHeader, XTable } from 'vux'
+import { Group, Selector, XHeader, XTable, Tabbar, TabbarItem } from 'vux'
+import icon from '../common/icon'
 import { tongji } from '../../service/getData'
+import loading from '../../components/loading'
 const th = () => ['胜率', '登场', '被禁', '击杀', '死亡', '助攻', '造成伤害', '承受伤害', '总治疗量', '场均最大连杀','补刀数', '金钱', '排名变化']
 export default {
   components: {
     Group,
     Selector,
     XHeader,
-    XTable
+    XTable,
+    Tabbar,
+    TabbarItem,
+    icon,
+    loading
   },
   data () {
     return {
       th: th(),
+      showloading: true,
       selectitem: '胜率',
       tongjilist: [],
       showlist: [],
@@ -124,15 +134,27 @@ export default {
     this.tongjilist = res.data.data
     this.showlist = this.tongjilist
     console.log(this.tongjilist)
+    this.showloading = false
   }
 }
 </script>
 
 <style lang="less" scoped>
+.weui-tabbar{
+  position:fixed;
+}
+.vux-header{
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+}
   .listtable tr td{
   }
   .listtable{
    float: left;
+    padding-bottom:77px;
   }  
   .link{
     border-bottom: 1px solid #C7C7C7;
@@ -142,6 +164,7 @@ export default {
      
   }
   .datatable{
+   padding-bottom:77px;
    float:right;
    width:50%;
    overflow: scroll;
@@ -156,7 +179,8 @@ export default {
   .table{
     line-height: 20px;
     font-size:10px;
-     border-top: 0;
+    border-top: 0;
+
 
   }
   .table th{
@@ -194,5 +218,13 @@ export default {
    .vux-table:after{
     border-top: 0;
    }
+  .main{
+  padding-top:46px;
+  padding-bottom:77px;
+   }
+  .loading{
+    margin-top:46px;
+  }
+
 
 </style>

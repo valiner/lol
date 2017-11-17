@@ -8,7 +8,6 @@ import './assets/iconfont'
 import './style/common.less'
 
 Vue.prototype.$axios = axios
-Vue.prototype.$routers = router
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

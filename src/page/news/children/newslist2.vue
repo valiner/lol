@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import { verNews, newNews, lplNews, etmNews } from '../service/getData'
+import { lplNews } from '../../../service/getData'
 import { Panel, Group, Radio } from 'vux'
-import loading from './loading'
+import loading from '../../../components/loading'
 export default{
   data () {
     return {
@@ -81,7 +81,6 @@ export default{
     //   this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
     // }
   },
-  props: ['newselected'],
   watch: {
   },
   created () {
@@ -95,28 +94,11 @@ export default{
     // .catch(function (error) {
     //   console.log(error)
     // })
-    let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-    this.bottom = 938 - height + 160
-    window.addEventListener('scroll', this.handleScroll)
-    if (this.newselected === '最新') {
-      const newdata = await newNews()
-      this.lastPage = newdata.data.message.lastPage
-      this.currentPage = newdata.data.message.currentPage
-      this.list = newdata.data.data
-      console.log(this.list)
-    }
-    if (this.newselected === '电竞') {
-      const lpldata = await lplNews()
-      this.list = lpldata.data.data
-    }
-    if (this.newselected === '娱乐') {
-      const etmdata = await etmNews()
-      this.list = etmdata.data.data
-    }
-    if (this.newselected === '版本') {
-      const verdata = await verNews()
-      this.list = verdata.data.data
-    }
+    const newdata = await lplNews()
+    this.lastPage = newdata.data.message.lastPage
+    this.currentPage = newdata.data.message.currentPage
+    this.list = newdata.data.data
+    console.log(this.list)
     this.showloading = false
   }
 }

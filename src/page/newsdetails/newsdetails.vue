@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<x-header :right-options="{showMore: true}" @on-click-more="showMenus = true"></x-header>
-		<div>
+		<x-header></x-header>
+		<loading class="loading" v-if="showloading"></loading>
+		<div class='main'>
 		<div class="new_title">{{newcontent['title']}}</div>
 		<div class="info">
 		  <span class="new_form">{{newcontent['source']}}</span>
@@ -16,11 +17,13 @@
 <script>
 import { XHeader } from 'vux'
 import { newDetails } from '../../service/getData'
+import loading from '../../components/loading'
 export default{
   data () {
     return {
       newid: '',
-      newcontent: []
+      newcontent: [],
+      showloading: true
     }
   },
   async mounted () {
@@ -29,13 +32,25 @@ export default{
     const details = await newDetails(this.newid)
     console.log(details.data.data)
     this.newcontent = details.data.data[0]
+    this.showloading = false
   },
   components: {
-    XHeader
+    XHeader,
+    loading
   }
 }
 </script>
 <style type="text/css" scoped>
+.vux-header{
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+}
+.main{
+	padding-top:46px;
+}
 	.new_title{
 		font-size: 30px;
 		text-align: center;
@@ -58,6 +73,13 @@ export default{
 		padding: 0 10px;
 		font-size: 16px;
 		line-height: 24px;
+	    overflow: hidden;
 	}
+	
 
+</style>
+<style>
+	.new_content img{
+		width: 100%;
+	}
 </style>

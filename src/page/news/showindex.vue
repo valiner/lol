@@ -1,27 +1,39 @@
 <template>
-  <div style="position: relative">
+  <div>
 
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">资讯</x-header>
-    <div>
-       <tab :line-width=2 active-color='#fc378c' v-model="index">
-        <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item"><router-link :to="'newslist'+(index+1)">{{item}}</router-link></tab-item>
-      </tab>
-    <!--       <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
-          <keep-alive>
-            <news-list :newselected="newselected" :listname='list'></news-list> 
-          </keep-alive>
-          </div> -->
-
-          <div class="panel-new">
-
-           <keep-alive >
+    <keep-alive >
       <router-view v-if="$route.meta.keepAlive"></router-view>
   </keep-alive>
   <router-view v-if="!$route.meta.keepAlive"></router-view>
- 
-          </div>
 
-    </div>
+
+    <tabbar>
+    <keep-alive include="tabbar-item">
+      <tabbar-item selected link="news">
+        <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
+        <span slot="label">资讯</span>
+      </tabbar-item>
+      </keep-alive>
+      <keep-alive>
+      <tabbar-item link="gameshow">
+        <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
+        <span slot="label">赛事</span>
+      </tabbar-item>
+      </keep-alive>
+      <tabbar-item link="recordshow">
+        <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
+        <span slot="label">战绩</span>
+      </tabbar-item>
+       <tabbar-item link="data">
+         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
+        <span slot="label">资料</span>
+      </tabbar-item>
+      <tabbar-item link="tongji">
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+        <span slot="label">统计
+        </span> 
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 
@@ -50,9 +62,6 @@ export default {
       newselected: '最新',
       index: 0
     }
-  },
-  created () {
-    console.log('xxx')
   },
   async mounted () {
     // console.log(this.$router)
