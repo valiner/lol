@@ -19,7 +19,7 @@ export default{
     XHeader
   },
   mounted () {
-    this.url = this.$route.params.url
+    this.url = this.$route.params.urls
   }
 }
 </script>

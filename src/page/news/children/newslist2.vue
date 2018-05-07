@@ -2,25 +2,25 @@
 	<div>
        <loading class="loading" v-if="showloading"></loading>
   
-       <router-link v-for="item in list" :to="'/newsdetails/'+item.newid" class="item">
-       <div v-if="item.src">
+       <router-link v-for="item in list" :to="'/newsdetails/'+item.id" class="item">
+       <div v-if="item.new_pic">
           <div class="info">
             <div class="title">
-              {{item.title}}
+              {{item.new_title}}
             </div>
-            <span>{{item.meta.source}}</span>
+            <span>{{item.new_from}}</span>
 
           </div>
           <div class="dimg">
-            <img :src="item.src" height="72" width="100">
+            <img :src="item.new_pic" height="72" width="100">
           </div>
         </div>
         <div v-else>
           <div class="info info2">
             <div class="title">
-              {{item.title}}
+              {{item.new_title}}
             </div>
-            <span>{{item.meta.source}}</span>
+            <span>{{item.new_from}}</span>
 
           </div>
         </div>
@@ -95,8 +95,8 @@ export default{
     //   console.log(error)
     // })
     const newdata = await lplNews()
-    this.lastPage = newdata.data.message.lastPage
-    this.currentPage = newdata.data.message.currentPage
+    // this.lastPage = newdata.data.message.lastPage
+    // this.currentPage = newdata.data.message.currentPage
     this.list = newdata.data.data
     console.log(this.list)
     this.showloading = false

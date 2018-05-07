@@ -6,7 +6,7 @@
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item">{{item}}</tab-item>
       </tab>
           <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
-            <data-list :selectedurl="selectedurl" :tourl="'/goodsdetails/'"></data-list> 
+            <data-list :selectedurl="selectedurl" :tourl="'/goodsdetails/'" :dtype="'goods'"></data-list> 
           </div>
 
     </div>

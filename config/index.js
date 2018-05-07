@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://lolapi.app',
+        target: 'http://lolapi.example',
         changeOrigin: true
       }
     },

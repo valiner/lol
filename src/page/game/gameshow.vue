@@ -36,7 +36,8 @@ export default {
   },
   async mounted () {
     const games = await gameshow()
-    this.gamesdata = games.data.data
+    this.gamesdata = games.data
+    console.log(games);
     this.showloading = false
   }
 }

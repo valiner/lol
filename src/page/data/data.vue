@@ -3,7 +3,7 @@
   <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">联盟资料</x-header>
   <loading class="loading" v-if="showloading"></loading>
     <div class="main">
-   	 <router-link v-for="item in dlist" class="item" :to="'dtype/' + item.dtype_id">
+   	 <router-link v-for="item in dlist" class="item" :to="'dtype/' + item.dtype_url">
    	 	<span class="himg"><img :src="item.dtype_img" width="64" height="64"></span>
         </br>
         <span class="hname">{{item.dtype_name}}</span>
@@ -40,7 +40,7 @@ export default {
   },
   async mounted () {
     let res = await dtype()
-    this.dlist = res.data.data
+    this.dlist = res.data
     this.showloading = false
   }
 }

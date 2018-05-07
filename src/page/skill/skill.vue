@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative">
   <x-header :left-options="{showBack: true}" :right-options="{showMore: true}" @on-click-more="showMenus = true">召唤师技能</x-header>
-            <data-list :selectedurl="'/api/skill'" :tourl="'/skilldetails/'"></data-list> 
+            <data-list :selectedurl="'/api/skills'" :tourl="'/skilldetails/'" :dtype="'skill'"></data-list> 
   </div>
 </template>
 

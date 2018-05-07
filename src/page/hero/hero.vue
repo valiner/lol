@@ -6,7 +6,7 @@
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item">{{item}}</tab-item>
       </tab>
           <div v-for="(item, index) in list2" :key="index" v-if="newselected === item" class="panel-new">
-            <data-list :selectedurl="selectedurl" :tourl="'/herodetails/'"></data-list> 
+            <data-list :selectedurl="selectedurl" :tourl="'/herodetails/'" :dtype="'hero'"></data-list> 
           </div>
 
     </div>
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     selectedurl: function () {
-      return '/api/hero/type/' + this.index
+      return '/api/heros/types/' + this.index
     }
   },
   async mounted () {

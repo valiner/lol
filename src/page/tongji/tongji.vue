@@ -131,7 +131,7 @@ export default {
     //   console.log(error)
     // })
     let res = await tongji()
-    this.tongjilist = res.data.data
+    this.tongjilist = res.data
     this.showlist = this.tongjilist
     console.log(this.tongjilist)
     this.showloading = false

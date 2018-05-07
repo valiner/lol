@@ -5,8 +5,8 @@
 		<div class="mlist">
 	   <div class="teaml">
         <div class="fonts">{{gamedata.game_type}}</div>
-        <div><img :src="gamedata.team1img" height="64" width="64"></div>
-        <div class="fontb">{{gamedata.team1name}}</div>
+        <div><img :src="gamedata.game_team1img" height="64" width="64"></div>
+        <div class="fontb">{{gamedata.game_team1name}}</div>
       </div>
       <div class="score">
         <div class="fonts">bo{{gamedata.game_bo}}</div>
@@ -15,8 +15,8 @@
       </div>
       <div class="teamr">
         <div class="fonts">{{gamedata.game_remark?gamedata.game_remark:"---"}}</div>
-        <div><img :src="gamedata.team2img" height="64" width="64"></div>
-        <div class="fontb">{{gamedata.team2name}}</div>
+        <div><img :src="gamedata.game_team2img" height="64" width="64"></div>
+        <div class="fontb">{{gamedata.game_team2name}}</div>
       </div>
 	</div>
 
@@ -53,7 +53,9 @@ export default{
   },
   methods: {
     govideo: function (item) {
-      this.$router.push({name: 'videopaly', params: { url: item.gvideo_url }})
+      console.log(item.gvideo_url);
+      // this.$router.push({ path: `/videopaly/${item.gvideo_url}` })
+      this.$router.push({name: 'videopaly', params: { urls: item.gvideo_url }})
     }
   }
 }

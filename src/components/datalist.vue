@@ -2,9 +2,9 @@
 	<div>
     	<group-title>  </group-title>
       <router-link v-for='item in herolist' class='heroitem' :to="tourl + item.id">
-        <span class="himg"><img :src="item.img" width="64" height="64"></span>
+        <span class="himg"><img :src="getSrc(item)" width="64" height="64"></span>
         </br>
-        <span class="hname">{{item.name}}</span>
+        <span class="hname">{{getName(item)}}</span>
       </router-link>
 	</div>
 </template>
@@ -25,7 +25,21 @@ export default{
     GridItem,
     GroupTitle
   },
-  props: ['selectedurl', 'tourl'],
+  methods: {
+    getSrc: function(item){
+      var src_name = this.dtype + '_img';
+      var src = eval("item." + src_name);
+      return src;
+    },
+    getName: function(item){
+      var src_name = this.dtype + '_name';
+      var src = eval("item." + src_name);
+      return src;
+    }
+  },
+  computed: {
+  },
+  props: ['selectedurl', 'tourl', 'dtype'],
   async mounted () {
     this.$axios.get(this.selectedurl).then((response) => {
       this.herolist = response.data.data

@@ -114,7 +114,7 @@ export default new Router({
       }]
     },
     {
-      path: '/dtype/1',
+      path: '/dtype/hero',
       name: 'hero',
       component: hero
     },
@@ -124,7 +124,7 @@ export default new Router({
       component: herodetails
     },
     {
-      path: '/dtype/2',
+      path: '/dtype/goods',
       name: 'goods',
       component: goods
     },
@@ -134,7 +134,7 @@ export default new Router({
       component: goodsdetails
     },
     {
-      path: '/dtype/3',
+      path: '/dtype/skill',
       name: 'skill',
       component: skill
     },
@@ -144,7 +144,7 @@ export default new Router({
       component: skilldetails
     },
     {
-      path: '/videopaly/:gvideo_url',
+      path: '/videopaly',
       name: 'videopaly',
       component: videopaly
     },

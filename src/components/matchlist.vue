@@ -3,8 +3,8 @@
 		<section v-for='item in gamedata' class="mlist" @click='matchdetails(item)'>
       <div class="teaml">
         <div class="fonts">{{item.game_type}}</div>
-        <div><img :src="item.team1img" height="64" width="64"></div>
-        <div class="fontb">{{item.team1name}}</div>
+        <div><img :src="item.game_team1img" height="64" width="64"></div>
+        <div class="fontb">{{item.game_team1name}}</div>
       </div>
       <div class="score">
         <div class="fonts">bo{{item.game_bo}}</div>
@@ -13,8 +13,8 @@
       </div>
       <div class="teamr">
         <div class="fonts">{{item.game_remark?item.game_remark:"---"}}</div>
-        <div><img :src="item.team2img" height="64" width="64"></div>
-        <div class="fontb">{{item.team2name}}</div>
+        <div><img :src="item.game_team2img" height="64" width="64"></div>
+        <div class="fontb">{{item.game_team2name}}</div>
       </div>
     </section>
 	</div>
@@ -30,7 +30,7 @@
     props: ['gamedata'],
     methods: {
       matchdetails: function (item) {
-        this.$router.push({ path: `/matchdetails/${item.game_id}` })
+        this.$router.push({ path: `/matchdetails/${item.id}` })
       }
     },
     mounted () {

@@ -3,12 +3,12 @@
 		<x-header></x-header>
 		<loading class="loading" v-if="showloading"></loading>
 		<div class='main'>
-		<div class="new_title">{{newcontent['title']}}</div>
+		<div class="new_title">{{newcontent['new_title']}}</div>
 		<div class="info">
-		  <span class="new_form">{{newcontent['source']}}</span>
-		  <span class="new_date">{{newcontent['date']}}</span>
+		  <span class="new_form">{{newcontent['new_form']}}</span>
+		  <span class="new_date">{{newcontent['new_time']}}</span>
 		</div>	
-		<div class="new_content" v-html="newcontent['content']">
+		<div class="new_content" v-html="newcontent['new_content']">
 		</div>			
 		</div>
 	</div>
@@ -31,7 +31,7 @@ export default{
     this.newid = this.$route.params.newid
     const details = await newDetails(this.newid)
     console.log(details.data.data)
-    this.newcontent = details.data.data[0]
+    this.newcontent = details.data.data
     this.showloading = false
   },
   components: {
