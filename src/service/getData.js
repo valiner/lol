@@ -3,6 +3,7 @@
  */
 import axios from 'axios'
 
+export const login = (email, password) => axios.post('/api/authorizations',{email: email, password: password})
 export const newsNew = () => axios.get('/api/school')
 export const newDetails = newid => axios.get('/api/news/' + newid)
 export const newNews = () => axios.get('/api/news')
