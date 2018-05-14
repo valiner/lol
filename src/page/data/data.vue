@@ -8,7 +8,7 @@
         </br>
         <span class="hname">{{item.dtype_name}}</span>
    	  </router-link>
-
+ 
     </div>
     
     

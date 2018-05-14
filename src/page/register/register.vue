@@ -1,16 +1,18 @@
 <template>
   <div class="container">
     <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">{{title}}</x-header>
-    <form @submit.prevent="login">  
+    <form @submit.prevent="register">  
           <group>
             <x-input title="邮箱" v-model="email" is-type="email" required></x-input>
-            <x-input title="密码" v-model="password" type="password" required></x-input>
+            <x-input title="发送验证码" class="weui-vcode" required>
+              <x-button slot="right" type="primary" @click.native="sendCode" mini>发送验证码</x-button>
+            </x-input>
+            <x-input title="请输入密码" type="password" placeholder="" v-model="password" @on-change="change" required></x-input>
+            <x-input title="请确认密码" v-model="password2" type="password" placeholder="" :equal-with="password" required></x-input>
           </group>  
           <x-button type="primary" action-type="submit">提交</x-button>
           <x-button>取消</x-button>       
     </form> 
-
-       <router-link to="register" style="margin-left:20px;color:#4876FF;">注册</router-link>
     <span>{{email}}</span>
   </div>
 </template>
@@ -29,10 +31,11 @@
     },
     data () {
       return {
-        title: '登陆',
+        title: '注册',
         msg: '',
         email: '',
-        password: ''
+        password: '',
+        password2: ''
       }
     },
     mounted(){
@@ -40,22 +43,11 @@
       this.$store.commit(types.TITLE, 'Login');
     },
     methods: {
-      login(){
-        if (this.password && this.email) {
-          new login(this.email, this.password).then(res => {
-              let token = res.data.data.token;
-              this.$store.commit(types.LOGIN, token);
-              let redirect = decodeURIComponent(this.$route.query.redirect || '/');
-              this.$router.push({
-                path: redirect
-              })
-          })
-          // this.$store.commit(types.LOGIN, this.token)
-          // let redirect = decodeURIComponent(this.$route.query.redirect || '/');
-          // this.$router.push({
-          //   path: redirect
-          // })
-        }
+      sendCode: function(){
+        console.log(123);
+      },
+      register(){
+          console.log(33);
       }
     }
   }

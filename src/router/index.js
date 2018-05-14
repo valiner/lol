@@ -28,6 +28,7 @@ import skilldetails from '@/page/skill/skilldetails'
 import data from '@/page/data/data'
 import tongji from '@/page/tongji/tongji'
 import login from '@/page/login/login'
+import register from '@/page/register/register'
 
 Vue.use(Router)
 
@@ -54,6 +55,13 @@ const routes = [
       path: '/login',
       name: 'login',
       component: login,
+      meta: {
+        keepAlive: true
+      }
+    }, {
+      path: '/register',
+      name: 'register',
+      component: register,
       meta: {
         keepAlive: true
       }
@@ -111,7 +119,7 @@ const routes = [
       name: 'data',
       component: data,
       meta: {
-        keepAlive: true
+        keepAlive: true,
       }
     }, {
       path: '/tongji',
