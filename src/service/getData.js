@@ -4,7 +4,8 @@
 import axios from 'axios'
 
 export const login = (email, password) => axios.post('/api/authorizations',{email: email, password: password})
-export const newsNew = () => axios.get('/api/school')
+export const verification = email => axios.get('/api/verification/' + email)
+export const register = (code, email, password) => axios.post('/api/register', {code: code, email: email, password: password})
 export const newDetails = newid => axios.get('/api/news/' + newid)
 export const newNews = () => axios.get('/api/news')
 export const etmNews = () => axios.get('/api/news/etm')

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">全部赛事</x-header>
+    <head-menu :title="'全部赛事'"></head-menu>
     <div class='main'>
     <loading v-if="showloading"></loading>
 		<div v-for="item in gamesdata">
@@ -17,6 +17,7 @@
 import { XHeader, Tabbar, TabbarItem } from 'vux'
 import { gameshow } from '../../service/getData'
 import matchList from '../../components/matchlist'
+import headMenu from '../../components/headmenu'
 import loading from '../../components/loading'
 import icon from '../common/icon'
 export default {
@@ -32,7 +33,8 @@ export default {
     Tabbar,
     TabbarItem,
     icon,
-    loading
+    loading,
+    headMenu
   },
   async mounted () {
     const games = await gameshow()

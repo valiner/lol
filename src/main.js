@@ -5,9 +5,12 @@ import App from './App'
 import router from './router'
 import axios from './http'
 import store from './store/store'
+import  { ToastPlugin } from 'vux'
 import './assets/iconfont'
 import './style/common.less'
 
+Vue.use(ToastPlugin)
+Vue.use(ToastPlugin, {position: 'middle'})
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 /* eslint-disable no-new */

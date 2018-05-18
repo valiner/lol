@@ -7,7 +7,7 @@
             <x-input title="密码" v-model="password" type="password" required></x-input>
           </group>  
           <x-button type="primary" action-type="submit">提交</x-button>
-          <x-button>取消</x-button>       
+          <x-button link="BACK" action-type="button">取消</x-button>    
     </form> 
 
        <router-link to="register" style="margin-left:20px;color:#4876FF;">注册</router-link>
@@ -45,16 +45,12 @@
           new login(this.email, this.password).then(res => {
               let token = res.data.data.token;
               this.$store.commit(types.LOGIN, token);
+              this.$store.commit(types.STATUS, 'landing');
               let redirect = decodeURIComponent(this.$route.query.redirect || '/');
               this.$router.push({
                 path: redirect
               })
           })
-          // this.$store.commit(types.LOGIN, this.token)
-          // let redirect = decodeURIComponent(this.$route.query.redirect || '/');
-          // this.$router.push({
-          //   path: redirect
-          // })
         }
       }
     }
