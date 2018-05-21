@@ -33,6 +33,11 @@
         <span slot="label">统计
         </span> 
       </tabbar-item>
+      <tabbar-item link="bbs">
+       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+        <span slot="label">讨论
+        </span> 
+      </tabbar-item>
     </tabbar>
   </div>
 </template>

@@ -29,6 +29,7 @@ import data from '@/page/data/data'
 import tongji from '@/page/tongji/tongji'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
+import bbs from '@/page/bbs/bbs'
 
 Vue.use(Router)
 
@@ -64,6 +65,12 @@ const routes = [
       component: register,
       meta: {
         keepAlive: true
+      }
+    }, {
+      path: '/bbs',
+      name: 'bbs',
+      component: bbs,
+      meta: {
       }
     }, {
       path: '/news',

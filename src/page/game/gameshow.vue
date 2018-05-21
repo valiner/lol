@@ -17,7 +17,7 @@
 import { XHeader, Tabbar, TabbarItem } from 'vux'
 import { gameshow } from '../../service/getData'
 import matchList from '../../components/matchlist'
-import headMenu from '../../components/headmenu'
+import headMenu from '../../components/headMenu'
 import loading from '../../components/loading'
 import icon from '../common/icon'
 export default {
