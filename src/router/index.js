@@ -30,6 +30,7 @@ import tongji from '@/page/tongji/tongji'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
 import bbs from '@/page/bbs/bbs'
+import addpost from '@/components/addpost'
 
 Vue.use(Router)
 
@@ -202,7 +203,13 @@ const routes = [
     path: '/xpanle',
     name: 'xpanle',
     component: xpanle
-  }
+  }, {
+      path: '/addpost',
+      name: 'addpost',
+      component: addpost,
+      meta: {
+      }
+    }
 ];
 
 // 页面刷新时，重新赋值token

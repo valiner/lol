@@ -3,16 +3,16 @@
     	<div class="item">
         <div class="author">
           <div class="left">
-            <div class="author-avator" :style="{backgroundImage: 'url(' + bbsItem.headImg + ')'}"></div>
-            <span class="author-name">{{bbsItem.username}}</span>
+            <div class="author-avator" :style="{backgroundImage: 'url(' + bbsItem.user.data.head_img + ')'}"></div>
+            <span class="author-name">{{bbsItem.user.data.nickname}}</span>
           </div>
-          <div class="right">{{bbsItem.time}}</div>
+          <div class="right">{{bbsItem.add_time}}</div>
         </div>
         <div class="desc">
           <p class="title">{{bbsItem.title}}</p>
           <div class="desc-icon">
-            <div class="desc-item" >{{bbsItem.view}}</div>
-            <div class="desc-item">{{bbsItem.hf}}</div>
+            <div class="desc-item" >{{bbsItem.comments}}</div>
+            <div class="desc-item">{{bbsItem.comments}}</div>
           </div>
         </div>
         

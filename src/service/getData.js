@@ -3,6 +3,8 @@
  */
 import axios from 'axios'
 
+export const posts = () => axios.get('/api/posts?include=user')
+export const createpost = (title, content) => axios.post('/api/posts',{title: title, content: content})
 export const login = (email, password) => axios.post('/api/authorizations',{email: email, password: password})
 export const verification = email => axios.get('/api/verification/' + email)
 export const register = (code, email, password) => axios.post('/api/register', {code: code, email: email, password: password})
@@ -22,4 +24,5 @@ export const goodsdetails = goodsid => axios.get('/api/goods/' + goodsid)
 export const dtype = () => axios.get('/api/dtypes')
 export const skilldetails = skillid => axios.get('/api/skills/' + skillid)
 export const tongji = () => axios.get('/api/statistics')
+
 
