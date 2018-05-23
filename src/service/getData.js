@@ -24,5 +24,7 @@ export const goodsdetails = goodsid => axios.get('/api/goods/' + goodsid)
 export const dtype = () => axios.get('/api/dtypes')
 export const skilldetails = skillid => axios.get('/api/skills/' + skillid)
 export const tongji = () => axios.get('/api/statistics')
+export const userpro = () => axios.get('/api/user')
+export const updateImg = (head_img) => axios.post('/api/user/img',{head_img : head_img})
 
 

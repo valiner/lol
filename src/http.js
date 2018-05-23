@@ -9,16 +9,15 @@ import * as types from './store/types'
 import router from './router'
 
 // axios 配置
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 1000;
 //axios.defaults.baseURL = 'http://lolapi.example';
 
 // http request 拦截器
 axios.interceptors.request.use(
     config => {
         if (store.state.token) {
-            config.headers.Authorization = `token ${store.state.token}`;
+            config.headers.Authorization = `Bearer ${store.state.token}`;
         }
-        console.log(config.headers.Authorization);
         return config;
     },
     err => {

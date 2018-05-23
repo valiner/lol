@@ -30,6 +30,7 @@ import tongji from '@/page/tongji/tongji'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
 import bbs from '@/page/bbs/bbs'
+import setting from '@/page/setting/setting'
 import addpost from '@/components/addpost'
 
 Vue.use(Router)
@@ -51,7 +52,6 @@ const routes = [
       name: 'gameshow',
       component: gameshow,
       meta: {
-        keepAlive: true
       }
     }, {
       path: '/login',
@@ -78,20 +78,17 @@ const routes = [
       name: 'news',
       component: news,
       meta: {
-        keepAlive: true
       },
       children: [{
         path: '',
         redirect: '/newslist1',
         meta: {
-          keepAlive: true
         }
       }, {
         path: '/newslist1',
         name: 'newslist1',
         component: newslist1,
         meta: {
-          keepAlive: true
         }
       }, {
         path: '/newslist2',
@@ -127,14 +124,12 @@ const routes = [
       name: 'data',
       component: data,
       meta: {
-        keepAlive: true,
       }
     }, {
       path: '/tongji',
       name: 'tongji',
       component: tongji,
       meta: {
-        keepAlive: true,
         requireAuth: true
       }
     }]
@@ -207,6 +202,12 @@ const routes = [
       path: '/addpost',
       name: 'addpost',
       component: addpost,
+      meta: {
+      }
+    }, {
+      path: '/setting',
+      name: 'setting',
+      component: setting,
       meta: {
       }
     }

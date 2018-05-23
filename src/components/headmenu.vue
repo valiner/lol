@@ -1,14 +1,14 @@
 <template>
-	<div>
-	<x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = !showMenus">{{title}}</x-header>
+	<div class='main'>
+	<x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
 	<transition name="right-menu">
     	<div v-if="showMenus">
-    		<div class="left_blank" @click="showMenus=!showMenus"></div>
+    		<div class="left_blank" @click="hideMenu"></div>
     		<div class="menu">
     			<div>
     				<div v-if="this.$store.state.status == 'landing'">
     				<blur :blur-amount=40 :url="imgurl">
-				      <p class="center"><img :src="imgurl"></p>
+				      <p class="center"><img :src="imgurl" @click="showPopup"></p>
 				    </blur>
 				    </div>
 				    	
@@ -31,28 +31,56 @@
 </template>
 
 <script>
-import { XHeader, Blur } from 'vux'
+import { XHeader, Blur, Popup, TransferDom} from 'vux'
 import icon from '../page/common/icon'
 export default{
   data () {
     return {
       showMenus: false,
-      imgurl: '/static/img/ez.jpg'
+      imgurl: '/static/img/ez.jpg',
     }
   },
   props: ['title'],
+  directives: {
+    TransferDom
+  },
   components: {
+  	Popup,
   	XHeader,
   	Blur,
   	icon
   },
+  methods: {
+  	showPopup: function(){
+  		this.$router.push({
+                path: "setting"
+              })
+  	},
+  	hideMenu: function(){
+  		this.showMenus = !this.showMenus;
+  		var mo=function(e){e.preventDefault();};
+        document.body.style.overflow='';//出现滚动条
+        document.removeEventListener("touchmove",mo,false);
+  	},
+  	showMenu: function(){
+  		this.showMenus = !this.showMenus
+	  	var mo=function(e){e.preventDefault();};
+	    document.body.style.overflow='hidden';
+	    document.addEventListener("touchmove",mo,false);//禁止页面滑动
+  	}
+  },
   mounted () {
+  	
   },
 }
 </script>
 
 <style scoped>
+
+		
+
     .menu{
+    	
     	width: 80%;
     	height: 1000px;
        /* background: rgb(50, 60, 60);*/
