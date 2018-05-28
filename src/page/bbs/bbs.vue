@@ -7,7 +7,7 @@
         <bbs-item :bbsItem="item"></bbs-item>
       </div>
     </div>
-    <router-link :to="'addpost'"><span class="add_post"></span></router-link>
+    <router-link :to="{path:'/addpost',query: {type: 'post'}}"><span class="add_post"></span></router-link>
     
   </div>
 </template>

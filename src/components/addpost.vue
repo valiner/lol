@@ -1,9 +1,10 @@
 <template>
   <div class="main">
-  <x-header>发贴<a slot="right" @click="send">发表</a></x-header>
+  <x-header>{{htitle}}<a slot="right" @click="send">发表</a></x-header>
    <group>
-      <x-input :placeholder="'标题'" v-model="title"></x-input>
-      <x-textarea :max="1000" v-model="content" name="description" :placeholder="'我有话要说...'" :height="400"></x-textarea>
+      <x-input :placeholder="'标题1dd'" v-model="title" v-if="show_title"></x-input>
+      <x-textarea :max="1000" v-model="content" name="description" :placeholder="'我有话要说.1dd..'" :height="400"></x-textarea>
+
     </group>
   </div>
 
@@ -12,7 +13,7 @@
 <script>
 import { XHeader, XTextarea, Group, XInput } from 'vux'
 import icon from '../page/common/icon'
-import { createpost } from '../service/getData'
+import { createpost, createcomment } from '../service/getData'
 import loading from './loading'
 
 export default {
@@ -28,24 +29,52 @@ export default {
     return {
       content: '',
       title: '',
+      show_title: true,
+      htitle: '',
+      post_id:'',
+      parent_id:'',
+      type: 'post',
     }
   },
   methods: {
+
     send: function(){
-      if (this.content!="" && this.title!="") {
+      if (this.type == 'reply') {
+        if (this.content!="") {
+        new createcomment(this.parent_id, this.post_id, this.content).then(res => {
+              this.$router.push({
+                path: "posts/"+this.post_id
+              })
+          })
+        }else{
+          this.$vux.toast.text('请填写完整');
+        }
+      }else if(this.type == 'post'){
+        if (this.content!="" && this.title!="") {
         new createpost(this.title, this.content).then(res => {
               this.$router.push({
                 path: "bbs"
               })
           })
-      }else{
-        this.$vux.toast.text('请填写完整');
+        }else{
+          this.$vux.toast.text('请填写完整');
+        }
       }
     }
   },
   computed: {
   },
-  async mounted () {
+  mounted () {
+    var routetype  = this.$route.query.type; 
+    this.type =  routetype;
+    if (routetype == 'reply') {
+      this.post_id = this.$route.query.id;
+      this.parent_id = 0;
+      this.show_title = false;
+      this.htitle = '回复';
+    }else if(routetype == 'post'){
+      this.htitle = '发贴';
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<div class='main'>
-	<x-header :left-options="{showBack: showback}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
+	<x-header @on-click-back="goPre" :left-options="{showBack: showback,preventGoBack: goback}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
 	<transition name="right-menu">
     	<div v-if="showMenus">
     		<div class="left_blank" @click="hideMenu"></div>
@@ -40,7 +40,7 @@ export default{
       imgurl: '/static/img/ez.jpg',
     }
   },
-  props: ['title','showback'],
+  props: ['title','showback','goback'],
   directives: {
     TransferDom
   },
@@ -51,6 +51,17 @@ export default{
   	icon
   },
   methods: {
+    goPre: function(){
+      var name = this.$route.name;
+      //固定路由
+      if (name == 'posts') {
+         this.$router.push({
+          'path': "/bbs"
+         })
+      }
+
+  
+    },
   	showPopup: function(){
       this.hideMenu();
   		this.$router.push({

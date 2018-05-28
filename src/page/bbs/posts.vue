@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-  <head-menu :title="'回复'" :showback="'true'"></head-menu>
+  <head-menu :title="'评论'" :showback="true" :goback="'true'"></head-menu>
   <loading class="loading" v-if="showloading"></loading>
     <div class='posts'>
         <div class="post_title">{{post.title}}</div>
@@ -10,6 +10,7 @@
         </div>  
         <div class="post_content">
           {{post.content}}
+         
         </div>
     </div>
 
@@ -19,7 +20,7 @@
 
 
 
-  <router-link :to="'addpost'"><span class="add_post"></span></router-link>
+  <router-link :to="{path:'/addpost',query: {type: 'reply',id: post_id}}" :title="回复帖子"><span class="add_post"></span></router-link>
     
   </div>
 </template>
@@ -60,6 +61,7 @@ export default {
      this.post = res.data.data;
      var res = await commentlist(this.post_id);
      this.comments = res.data.data;
+     console.log(this.comments)
   }
 }
 </script>
@@ -105,6 +107,7 @@ export default {
       overflow: hidden;
   }
 
+  
 
 
 

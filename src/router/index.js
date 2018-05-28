@@ -32,6 +32,7 @@ import register from '@/page/register/register'
 import bbs from '@/page/bbs/bbs'
 import posts from '@/page/bbs/posts'
 import setting from '@/page/setting/setting'
+import commentpage from '@/page/bbs/commentpage'
 import addpost from '@/components/addpost'
 import comment from '@/components/comment'
 
@@ -216,6 +217,12 @@ const routes = [
       path: '/posts/:id',
       name: 'posts',
       component: posts,
+      meta: {
+      }
+    },{
+      path: '/comments/:id/comments',
+      name: 'commentpage',
+      component: commentpage,
       meta: {
       }
     }, {

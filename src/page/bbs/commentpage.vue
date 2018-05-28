@@ -1,51 +1,70 @@
 <template>
-	<div>
-    	<div class="item">
-        <div class="author">
+  <div class="main">
+  <head-menu :title="'评论'" :showback="'true'"></head-menu>
+  <loading class="loading" v-if="showloading"></loading>
+
+  
+    <div v-for="item in comments">
+    <div class="item">
+      <div class="author">
           <div class="left">
-            <div class="author-avator" :style="{backgroundImage: 'url(' + bbsItem.user.data.head_img + ')'}"></div>
-            <span class="author-name">{{bbsItem.user.data.nickname}}</span>
+            <div class="author-avator" :style="{backgroundImage: 'url(' + item.user.data.head_img + ')'}"></div>
+            <span class="author-name">{{item.user.data.nickname}}</span>
           </div>
-          <div class="right">{{bbsItem.add_time}}</div>
+          <div class="right">{{item.add_time}}</div>
         </div>
         <div class="desc">
-          <p class="title" @click="goComments(bbsItem.id)">{{bbsItem.title}}</p>
+          <p class="title">{{item.content}}</p>
           <div class="desc-icon">
-            <div class="desc-item" >{{bbsItem.commentcount.meta.count}}</div>
-            <div class="desc-item">{{bbsItem.commentcount.meta.count}}</div>
+
           </div>
         </div>
-        
       </div>
-	</div>
+    
+  </div>
+
+
+  <router-link :to="{path:'/addpost',query: {type: 'reply'}}" :title="回复帖子"><span class="add_post"></span></router-link>
+    
+  </div>
 </template>
 
 <script>
-import { Panel } from 'vux'
-export default{
+import { commentChildList } from '../../service/getData'
+import headMenu from '../../components/headMenu'
+import comment from '../../components/comment'
+import icon from '../common/icon'
+import loading from '../../components/loading'
+
+export default {
+  components: {
+    headMenu,
+    comment,
+    icon,
+    loading
+  },
   data () {
     return {
-      herolist: []
+      comment_id: '',
+      comments: []
+      // showloading: true
     }
-  },
-  components: {
-    Panel
   },
   methods: {
-    goComments : function(id){
-      this.$router.push({path: `/posts/${id}`});
-    }
   },
   computed: {
   },
-  props: ['bbsItem'],
   async mounted () {
+     this.comment_id = this.$route.params.id;
+     var res = await commentChildList(this.comment_id);
+     this.comments = res.data.data;
+
   }
 }
 </script>
 
-<style type="text/css" scoped>
-	.item{
+<style scoped>
+  .item{
     padding: 12px 16px;
     background-color: #fff;
     margin-bottom: 10px;
@@ -111,4 +130,8 @@ export default{
     max-width: 50%;
     margin-top: 10px;
 }
+
+
+
+
 </style>
