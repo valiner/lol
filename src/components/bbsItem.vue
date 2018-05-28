@@ -9,10 +9,10 @@
           <div class="right">{{bbsItem.add_time}}</div>
         </div>
         <div class="desc">
-          <p class="title">{{bbsItem.title}}</p>
+          <p class="title" @click="goComments(bbsItem.id)">{{bbsItem.title}}</p>
           <div class="desc-icon">
-            <div class="desc-item" >{{bbsItem.comments}}</div>
-            <div class="desc-item">{{bbsItem.comments}}</div>
+            <div class="desc-item" >{{bbsItem.comment.meta.count}}</div>
+            <div class="desc-item">{{bbsItem.comment.meta.count}}</div>
           </div>
         </div>
         
@@ -32,6 +32,9 @@ export default{
     Panel
   },
   methods: {
+    goComments : function(id){
+      this.$router.push({path: `/posts/${id}`});
+    }
   },
   computed: {
   },

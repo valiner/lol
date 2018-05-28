@@ -3,7 +3,9 @@
  */
 import axios from 'axios'
 
-export const posts = () => axios.get('/api/posts?include=user')
+export const posts = () => axios.get('/api/posts?include=user,comment')
+export const postdetails = (post_id) => axios.get('/api/posts/'+post_id+'?include=user')
+export const commentlist = (post_id) => axios.get('/api/posts/'+post_id+'/comments?include=comment')
 export const createpost = (title, content) => axios.post('/api/posts',{title: title, content: content})
 export const login = (email, password) => axios.post('/api/authorizations',{email: email, password: password})
 export const verification = email => axios.get('/api/verification/' + email)

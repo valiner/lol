@@ -1,6 +1,6 @@
 <template>
 	<div class='main'>
-	<x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
+	<x-header :left-options="{showBack: showback}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
 	<transition name="right-menu">
     	<div v-if="showMenus">
     		<div class="left_blank" @click="hideMenu"></div>
@@ -40,7 +40,7 @@ export default{
       imgurl: '/static/img/ez.jpg',
     }
   },
-  props: ['title'],
+  props: ['title','showback'],
   directives: {
     TransferDom
   },
@@ -52,6 +52,7 @@ export default{
   },
   methods: {
   	showPopup: function(){
+      this.hideMenu();
   		this.$router.push({
                 path: "setting"
               })

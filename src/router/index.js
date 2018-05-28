@@ -30,8 +30,10 @@ import tongji from '@/page/tongji/tongji'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
 import bbs from '@/page/bbs/bbs'
+import posts from '@/page/bbs/posts'
 import setting from '@/page/setting/setting'
 import addpost from '@/components/addpost'
+import comment from '@/components/comment'
 
 Vue.use(Router)
 
@@ -208,6 +210,18 @@ const routes = [
       path: '/setting',
       name: 'setting',
       component: setting,
+      meta: {
+      }
+    },{
+      path: '/posts/:id',
+      name: 'posts',
+      component: posts,
+      meta: {
+      }
+    }, {
+      path: '/comment',
+      name: 'comment',
+      component: comment,
       meta: {
       }
     }

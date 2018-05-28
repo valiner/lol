@@ -48,9 +48,9 @@ export default{
     top: 0px;
     z-index: 100;
 }
-.main{
-	padding-top:46px;
-}
+	.main{
+		padding-top:46px;
+	}
 	.new_title{
 		font-size: 30px;
 		text-align: center;
