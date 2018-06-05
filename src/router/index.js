@@ -33,6 +33,8 @@ import bbs from '@/page/bbs/bbs'
 import posts from '@/page/bbs/posts'
 import setting from '@/page/setting/setting'
 import commentpage from '@/page/bbs/commentpage'
+import groupchat from '@/page/chat/groupchat'
+import checkuser from '@/page/chat/checkuser'
 import addpost from '@/components/addpost'
 import comment from '@/components/comment'
 
@@ -229,6 +231,19 @@ const routes = [
       path: '/comment',
       name: 'comment',
       component: comment,
+      meta: {
+      }
+    }, {
+      path: '/groupchat',
+      name: 'groupchat',
+      component: groupchat,
+      meta: {
+        requireAuth: true
+      }
+    }, {
+      path: '/checkuser',
+      name: 'checkuser',
+      component: checkuser,
       meta: {
       }
     }

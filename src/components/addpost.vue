@@ -49,6 +49,16 @@ export default {
         }else{
           this.$vux.toast.text('请填写完整');
         }
+      }else if(this.type == 'replycomment'){
+        if (this.content!="") {
+        new createcomment(this.parent_id, this.post_id, this.content).then(res => {
+              this.$router.push({
+                path: "comments/"+this.parent_id+"/comments/?post_id="+this.post_id
+              })
+          })
+        }else{
+          this.$vux.toast.text('请填写完整');
+        }
       }else if(this.type == 'post'){
         if (this.content!="" && this.title!="") {
         new createpost(this.title, this.content).then(res => {
@@ -74,6 +84,11 @@ export default {
       this.htitle = '回复';
     }else if(routetype == 'post'){
       this.htitle = '发贴';
+    }else if(routetype == 'replycomment'){
+      this.parent_id = this.$route.query.parent_id;
+      this.post_id = this.$route.query.post_id;
+      this.show_title = false;
+      this.htitle = '回复';
     }
   }
 }

@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <comment :list="comments">
+    <comment :list="comments" :post_id="post_id">
       
     </comment>
 

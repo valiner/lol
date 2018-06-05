@@ -59,6 +59,12 @@ export default{
           'path': "/bbs"
          })
       }
+      if (name == 'commentpage') {
+        var post_id = this.$route.query.post_id;
+         this.$router.push({
+          'path': `/posts/${post_id}`
+         })
+      }
 
   
     },

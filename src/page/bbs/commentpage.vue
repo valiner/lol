@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-  <head-menu :title="'评论'" :showback="'true'"></head-menu>
+  <head-menu :title="'评论'" :showback="'true'" :goback="'true'"></head-menu>
   <loading class="loading" v-if="showloading"></loading>
 
   
@@ -24,7 +24,7 @@
   </div>
 
 
-  <router-link :to="{path:'/addpost',query: {type: 'reply'}}" :title="回复帖子"><span class="add_post"></span></router-link>
+  <router-link :to="{path:'/addpost',query: {type: 'replycomment',post_id: post_id,parent_id: comment_id}}" :title="回复帖子"><span class="add_post"></span></router-link>
     
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
   data () {
     return {
       comment_id: '',
+      post_id: '',
       comments: []
       // showloading: true
     }
@@ -55,7 +56,9 @@ export default {
   computed: {
   },
   async mounted () {
+    console.log(this.$route);
      this.comment_id = this.$route.params.id;
+     this.post_id = this.$route.query.post_id;
      var res = await commentChildList(this.comment_id);
      this.comments = res.data.data;
 
@@ -64,6 +67,18 @@ export default {
 </script>
 
 <style scoped>
+.add_post{
+    position: fixed;
+    bottom: 73px;
+    right: 17px; 
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ececec;
+}
   .item{
     padding: 12px 16px;
     background-color: #fff;

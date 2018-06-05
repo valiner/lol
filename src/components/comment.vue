@@ -41,12 +41,12 @@ export default {
   },
   methods: {
     goComments : function(id){
-      this.$router.push({path: `/comments/${id}/comments`});
+      this.$router.push({path: `/comments/${id}/comments?post_id=${this.post_id}`});
     }
   },
   computed: {
   },
-  props: ['list'],
+  props: ['list','post_id'],
   async mounted () {
 
   }
