@@ -13,6 +13,13 @@ Vue.use(ToastPlugin)
 Vue.use(ToastPlugin, {position: 'middle'})
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
+Vue.filter('substr', function(value) {
+	if (value.length>4) {
+		return value.substr(0,4)+"...";
+	}
+	return value.substr(0,4);
+    
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -11,13 +11,14 @@
     </form> 
 
        <router-link to="register" style="margin-left:20px;color:#4876FF;">注册</router-link>
-    <span>{{email}}</span>
+
   </div>
 </template>
 
 <script type="application/ecmascript">
   import { XHeader, XInput, Group, XButton, Cell} from 'vux'
   import { login } from '../../service/getData'
+  import { userpro } from '../../service/getData'
   import * as types from '../../store/types'
   export default {
     components: {
@@ -41,16 +42,25 @@
     },
     methods: {
       login(){
+        let _this = this;
         if (this.password && this.email) {
           new login(this.email, this.password).then(res => {
               let token = res.data.data.token;
               this.$store.commit(types.LOGIN, token);
               this.$store.commit(types.STATUS, 'landing');
+              new userpro().then(res => {
+                 let user = res.data.data;
+                 this.$store.commit('SET_USERPRO', user);
+              });
+
+              this.$store.commit(types.STATUS, 'landing');
               let redirect = decodeURIComponent(this.$route.query.redirect || '/');
               this.$router.push({
                 path: redirect
               })
-          })
+          }).catch(err => {
+          this.$vux.toast.text("用户名或者密码错误");
+        })
         }
       }
     }

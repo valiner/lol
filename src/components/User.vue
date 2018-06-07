@@ -1,9 +1,13 @@
 <template>
     <div class="card">
         <div class="header">
-            <img class="avatar" v-bind:src="currentUser.avatar">
-            <p class="name">{{currentUser.nickname}} </p>
+            <img class="avatar" v-bind:src="currentUser.avatar" v-bind:alt="currentUser.nickname">
+        </div>
+        <div class="header">
+            <div class="bname">
+            <p class="name">{{currentUser.nickname|substr}} </p>
             <div class="dot" v-bind:class="[ online ? 'dot-green' : 'dot-red' ]"></div>
+            </div>
         </div>
     
     </div>
@@ -24,7 +28,7 @@
         computed: {
            online() {
             return store.getters.online;
-           } 
+           }
         },
         created: function(){
         }
@@ -32,25 +36,33 @@
 </script>
 
 <style lang="less">
+        
     .card{
         display: flex;
         flex-direction: column;
-        padding: 20px 15px;
+        padding: 10px 3px 0 3px;
         border-bottom: 1px solid #24272c;
 
         .header{
             display: flex;
             flex-direction: row;
+      
+            
 
             img{
-                width: 40px; 
-                height: 40px;
+                margin:auto;
+                width: 50px; 
+                height: 50px;
             }
-
+            .bname{
+                margin:auto;
+                display: flex;
+                flex-direction: row;
+            }
             p{
+                
                 font-size: 16px;
                 align-self:center;
-                margin-left: 15px;
             }
             .dot{
                 width: 8px;
@@ -67,6 +79,7 @@
                 background: #ff0000;
             }
         }
+
 
         .search{
             input{

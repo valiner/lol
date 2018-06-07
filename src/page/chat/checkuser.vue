@@ -25,7 +25,7 @@ export default {
         { name: 'groupchat', params: { user: this.user }}
        );
     }).catch(err => {
-       cthis.$vux.toast.text("请登陆");
+       this.$vux.toast.text("请登陆");
     });
 
   }

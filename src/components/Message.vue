@@ -1,13 +1,12 @@
 <template>
     <div class="content">
-        244
         <div class="title">
-            <p>{{ currentSession.nickname }}</p>
+            <p>{{ currentSession.nickname }}</p><span class="tc" @click="goout()">退出<span class="arrow"></span></span>
         </div>
-        <div class="message">
+        <div class="message" id="message">
             <ul>
                 <li v-for="msg in broadcast[currentSession.id]">
-                    <p>{{ msg.time }}</p>
+                    <!-- <p>{{ msg.time }}</p> -->
                     <div class="msg" v-bind:class="msg.user.id == currentUser.id ? 'self' : ''">
                         <img v-bind:src="msg.user.avatar" v-bind:alt="msg.user.nickname">
                         <div class="text">{{ msg.msg }}</div>
@@ -30,6 +29,22 @@
                 broadcast: store.getters.broadcast
             }
         },
+        methods: {
+        goout: function(){
+            let conn = store.getters.conn;
+            conn.close();
+          
+        }
+      },
+        watch:{
+          broadcast: function(){
+            //下啦最底部
+            this.$nextTick(() => {
+                var div = document.getElementById('message')
+                div.scrollTop = div.scrollHeight
+            })
+          }
+        },
         created:function(){
             console.log(this);
         }
@@ -37,6 +52,30 @@
 </script>
 
 <style lang="less" scoped>
+    ul{
+        padding:0;
+    }
+    
+    .arrow{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: -1px;
+        left: 13px;
+    }
+    .arrow:before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border: 1px solid #3e3238;
+            border-width: 1px 0 0 1px;
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+            top: 8px;
+            left: 7px;
+    }
+    
     .content{
         display: flex;
         flex-direction: column;
@@ -52,13 +91,23 @@
                 text-align: center;
                 font-size: 16px;
                 color: #666;
+                margin-right:20px;
+                margin-left:20px;
             }
+            .tc{
+                right:14px;
+                position: absolute;
+                top: 14px;
+                display: block;
+                font-size: 12px;
+                line-height: 21px;
+             }
         }
 
         .message{
             overflow-y: scroll;
-            padding: 10px 15px;
-            height: 400px;
+            padding: 10px 2px;
+            height: 450px;
             &::-webkit-scrollbar-button{
                 display: none;
             }

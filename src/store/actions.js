@@ -34,6 +34,7 @@ export default {
     },
 
     addMessage : ({ commit }, message) => {
+        console.log(message)
         if (message.is_self != 1) {
             let userId = message.to == 0 ? 0 : message.from;
         
@@ -56,6 +57,15 @@ export default {
         console.log(msg);
          console.log(type);
         commit('SHOW_NOTICE', msg, type);
+    },
+
+
+    clearUser : ({ commit }) => {
+        commit('CLEAR_USER');
+    },
+
+    clearConn : ({ commit }, msg, type) => {
+        commit('CLEAR_CONN');
     }
 
 

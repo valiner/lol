@@ -1,6 +1,6 @@
 <template>
   <div class="room">
-    <span @click="goout()">退出</span>
+    <!-- <span @click="goout()">退出</span> -->
     <div class="slide-bar">
       <user></user>
       <list></list>
@@ -43,7 +43,7 @@ export default {
   methods: {
     goout: function(){
       this.conn.close();
-      console.log(this.conn);
+      
     }
   },
   computed: {
@@ -53,6 +53,7 @@ export default {
             let _this = this;
             let conn = new WebSocket('ws://192.168.10.10:9502?nicknamex='+ss.user.nickname+'&headimg='+ss.user.head_img);
             this.conn = conn;
+
             conn.onopen = function(evt){
                 //store.dispatch('showNotice','连接成功！','连');
                 store.dispatch('changeStatus',true);
@@ -61,6 +62,8 @@ export default {
             conn.onclose = function(evt){
               _this.$vux.toast.text('已断开');
               store.dispatch('changeStatus',false);
+              store.dispatch('clearUser');
+              store.dispatch('clearConn');
                 // _this.showNotice(' 已断开连接！','error');
                 // _this.changeStatus(false);
             }
@@ -96,6 +99,7 @@ export default {
                         break;
                 }
             }
+            console.log(conn);
             store.dispatch('setConn',conn);
 
            
@@ -106,21 +110,11 @@ export default {
 }
 </script>
 
-<style  scoped>
-
-  #room{
-        width: 500px;
-        height: 600px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -400px;
-        margin-top: -300px;
-
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        border-radius: 3px;
+<style lang="less" scoped>
+      html,body{width:100%;height:100%}
+     .room{
+        width: 100%;
+        height:100%;
         }
         
         .slide-bar,.main{
@@ -129,13 +123,14 @@ export default {
 
         .slide-bar{
           float: left;
-          width: 200px;
+          width: 120px;
           background:#2e3238;
           color: #f4f4f4;
         }
         .main{
-          float: left;
-          width: 200px;
+        
+         
+          margin-left:120px;
           background: #eee;
           
           flex-direction: column;

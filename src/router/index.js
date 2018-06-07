@@ -100,21 +100,18 @@ const routes = [
         name: 'newslist2',
         component: newslist2,
         meta: {
-          keepAlive: true
         }
       }, {
         path: '/newslist3',
         name: 'newslist3',
         component: newslist3,
         meta: {
-          keepAlive: true
         }
       }, {
         path: '/newslist4',
         name: 'newslist4',
         component: newslist4,
         meta: {
-          keepAlive: true
         }
       }]
     }, {
@@ -135,7 +132,7 @@ const routes = [
       name: 'tongji',
       component: tongji,
       meta: {
-        requireAuth: true
+        
       }
     }]
   },

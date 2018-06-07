@@ -4,8 +4,9 @@
     <form @submit.prevent="register">  
           <group>
             <x-input title="邮箱" v-model="email" is-type="email" required></x-input>
+            <x-input title="昵称" v-model="nickname" required></x-input>
             <x-input title="发送验证码" class="weui-vcode" v-model="code" required>
-              <x-button slot="right" type="primary" action-type="button" @click.native="sendCode" :text="codetext" :disabled="btn_disable" mini></x-button>
+              <x-button slot="right" action-type="button" @click.native="sendCode" :text="codetext" :disabled="btn_disable" mini></x-button>
             </x-input>
             <x-input title="请输入密码" type="password" placeholder="" v-model="password" @on-change="change" required></x-input>
             <x-input title="请确认密码" v-model="password2" type="password" placeholder="" :equal-with="password" required></x-input>
@@ -13,6 +14,7 @@
           <x-button type="primary" action-type="submit">提交</x-button>
           <x-button link="BACK" action-type="button">取消</x-button>       
     </form> 
+
   </div>
 </template>
 
@@ -20,6 +22,8 @@
   import { XHeader, XInput, Group, XButton, Cell} from 'vux'
   import { verification, register} from '../../service/getData'
   import * as types from '../../store/types'
+  import { userpro } from '../../service/getData'
+  import axios from 'axios'
   export default {
     components: {
       XHeader,
@@ -31,6 +35,7 @@
     data () {
       return {
         title: '注册',
+        nickname:'',
         msg: '',
         email: '',
         password: '',
@@ -47,19 +52,24 @@
     },
     methods: {
       sendCode: function(){
-        new verification(this.email).then(res => {
-          this.$vux.toast.text('已发送验证码30分钟内有效');
-          this.setTime();
+        console.log(this.email);
+        axios.get('/api/verification/' + this.email).then(res => {
         }).catch(err => {
-          this.$vux.toast.text(err.message);
+            this.$vux.toast.text('已发送验证码30分钟内有效');
+            this.setTime();  
         })
+        // new verification(this.email)
       },
       register(){
-        console.log('re');
-        new register(this.code, this.email, this.password).then(res => {
+        new register(this.code, this.email, this.password, this.nickname).then(res => {
             this.$vux.toast.text('注册成功');
             let token = res.data.data.token;
             this.$store.commit(types.LOGIN, token);
+            this.$store.commit(types.STATUS, 'landing');
+             new userpro().then(res => {
+                 let user = res.data.data;
+                 this.$store.commit('SET_USERPRO', user);
+              });
             let redirect = decodeURIComponent(this.$route.query.redirect || '/');
             this.$router.push({
               path: redirect

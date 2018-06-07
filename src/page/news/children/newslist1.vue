@@ -1,7 +1,8 @@
 <template>
 	<div>
        <loading class="loading" v-if="showloading"></loading>
-  
+        
+
        <router-link v-for="item in list" :to="'/newsdetails/'+item.id" class="item">
        <div v-if="item.new_pic">
           <div class="info">
@@ -26,6 +27,8 @@
         </div>
   
        </router-link>
+       <load-more :tip="tip" :show-loading="true" v-if="showloadmore"></load-more>
+
 
       
 
@@ -34,74 +37,74 @@
 
 <script>
 import { newNews } from '../../../service/getData'
-import { Panel, Group, Radio } from 'vux'
+import { Panel, Group, Radio, LoadMore } from 'vux'
 import loading from '../../../components/loading'
 export default{
   data () {
     return {
-      newsdata: [],
       showloading: true,
-      currentPage: 0,
-      lastPage: 1,
+      showloadmore: false,
+      currentPage: 1,
       type: '5',
       bottom: 0,
+      tip:"正在加载",
       list: []
     }
   },
   components: {
     Panel,
+    LoadMore,
     Group,
     Radio,
     loading
   },
+  beforeDestroy(){
+    window.removeEventListener('scroll',this.loadMore,true);
+  },
   methods: {
-    // handleScroll () {
-    //   console.log(window.scrollY)
-    //   console.log(this.bottom)
-    //   if (window.scrollY >= this.bottom) {
-    //     console.log('load-more')
-    //     let page = this.currentPage + 1
-    //     let that = this
-    //     this.$parent.$axios.get('/api/newNews?page=' + page).then(function (response) {
-    //       // his.list = newdata.data.data
-    //       that.currentPage = page
-    //       that.list = [...that.list, ...response.data.data]
-    //       that.bottom += 938
-    //       console.log(that.list)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    //   }
-    // },
-    // onImgError (item, $event) {
-    //   console.log(item, $event)
-    // },
-    // clickItem (item) {
-    //   this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
-    // }
+    loadMore(){
+    let _this = this;
+    clearTimeout(this.timer);
+    this.timer=setTimeout(()=>{
+        var clientHeight=document.documentElement.clientHeight; //document.documentElement获取数据
+        var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
+        var scrollHeight=document.documentElement.scrollHeight;//document.documentElement获取数据
+        if(clientHeight+scrollTop+20>=scrollHeight){
+            this.currentPage++;
+            new newNews(this.currentPage).then(res=>{
+
+                if (res.data.data.length == 0) {
+                  _this.tip="暂无数据";
+                
+                }else{
+                   for (var i = res.data.data.length - 1; i >= 0; i--) {
+                  _this.list.push(res.data.data[i]);
+                  }
+                }
+                
+                
+            })
+        }
+    },100);
+   },
+    onImgError (item, $event) {
+      console.log(item, $event)
+    },
+    clickItem (item) {
+      this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
+    }
   },
   watch: {
   },
   created () {
-    console.log('xxxaa')
   },
   async mounted () {
-    // console.log(this.$axios)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(7777777777777777)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    console.log(this.$route)
-    const newdata = await newNews()
+    window.addEventListener('scroll',this.loadMore,true);
+    const newdata = await newNews(this.currentPage)
     console.log(newdata.data.data);
-    // this.lastPage = newdata.data.data.lastPage
-    // this.currentPage = newdata.data.message.currentPage
     this.list = newdata.data.data
-    console.log(this.list)
-    this.showloading = false
+    this.showloading = false;
+    this.showloadmore = true;
   }
 }
 </script>

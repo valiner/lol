@@ -1,7 +1,7 @@
 <template>
 	<div>
     <head-menu :title="'全部赛事'"></head-menu>
-    <div class='main'>
+    <div class='maingame'>
     <loading v-if="showloading"></loading>
 		<div v-for="item in gamesdata">
 		    <div class="title">{{item[0].game_date}}</div>
@@ -59,8 +59,7 @@ export default {
     top: 0px;
     z-index: 100;
   }
-  .main{
-    padding-top: 46px;
+  .maingame{
     padding-bottom: 77PX;
   }
    .weui-tabbar{

@@ -3,7 +3,7 @@
         <ul>
             <li v-for="user in users" v-on:click="changeSession(user.id)">
                 <img v-bind:src="user.avatar" v-bind:alt="user.name">
-                <p>{{ user.nickname }} <span v-if="user.id == 0">({{ currentCount }})</span></p>
+                <p>{{ user.nickname|substr }} <span v-if="user.id == 0">({{ currentCount }})</span></p>
                 <div v-bind:class="[ user.has_message ? 'dot' : '' ]"></div>
             </li>
         </ul>
@@ -30,8 +30,10 @@
         methods : {
             changeSession(userId){
                 if (typeof userId == 'number') {
-                    this.selectSession(userId);
-                    this.setHasMessageStatus(userId,false);
+                    store.dispatch('selectSession',userId);
+                    //this.selectSession(userId);
+                    store.dispatch('setHasMessageStatus',userId,false);
+                    //this.setHasMessageStatus(userId,false);
                 }
             }
         }
@@ -66,13 +68,14 @@
             margin: 0; padding: 0;
         }
         li{
+
             display: flex;
             flex-direction: row;
             align-items: center;
             height: 60px;
             cursor: pointer;
             border-bottom: 1px solid #292c33;
-            padding: 15px;
+            padding: 5px;
             &:hover{
                 background: rgba(255,255,255,0.03);
             }

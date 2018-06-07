@@ -19,6 +19,8 @@ export default {
         }
     },
 
+    userpro : ({ userpro }) => userpro,
+
     online : ({ online }) => online,
 
     currentCount : ({ currentCount }) => currentCount,

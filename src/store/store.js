@@ -12,6 +12,7 @@ export default new Vuex.Store({
     actions,
     getters,
     state: {
+        userpro: {},
         user: {},
         token: null,
         title: '',
@@ -76,11 +77,23 @@ export default new Vuex.Store({
                 if (state.users[i].id != userId) {
                     continue;
                 }
-                state.currentSession = state.users[i];
+                Vue.set(state.currentSession,'id',state.users[i].id);
+                Vue.set(state.currentSession,'nickname',state.users[i].nickname);
+                Vue.set(state.currentSession,'avatar',state.users[i].avatar);
+                Vue.set(state.currentSession,'has_message',state.users[i].has_message);
+                //state.currentSession = state.users[i];
+                console.log(state.currentSession);
                 break;
             }
         },
+        SET_USERPRO: (state, user) => {
+            Vue.set(state,'userpro',user);
+        },
+        SET_HEAD_IMG: (state, img) => {
+            Vue.set(state.userpro,'head_img',img);
+        },
 
+        
         SET_USER: (state, user) => {
             //state.currentUser = user;
             Vue.set(state.currentUser,'nickname',user.nickname)
@@ -88,9 +101,27 @@ export default new Vuex.Store({
             Vue.set(state.currentUser,'avatar',user.avatar)
         },
 
+        CLEAR_USER: (state) => {
+            state.users = [
+            {
+                id : 0,
+                nickname : '群聊',
+                avatar : 'http://58pic.ooopic.com/58pic/12/25/04/02k58PICVwf.jpg',
+                has_message : false
+            }
+           ];
+        },
+
+        CLEAR_CONN: (state) => {
+            state.connection=null;
+        },
+
+
         ADD_USER: (state, user) => {
             if (user instanceof Array) {
-
+                 console.log(state.users);
+                 console.log(user);
+                 console.log(state.currentUser.id);
                 for (var i = user.length - 1; i >= 0; i--) {
                     if (user[i].id != state.currentUser.id) {
                         user[i].has_message = false;
@@ -98,25 +129,26 @@ export default new Vuex.Store({
                     }
                     
                 }
+               
             }else{
                 user.has_message = false;
                 state.users.push(user);
             }
-           console.log(user);
-        
         },
 
         REMOVE_USER: (state, userId) => {
             state.users.forEach((item,index) => {
                 if (item.id == userId) {
-                    state.users.remove(item);
+                    state.users.splice(index,1);
+                    //this.state.users.$remove(item);
                 }
             });
         },
 
         SET_CONN: (state, conn) => {
             if (conn != null && state.connection == null) {
-                state.connection = conn;
+                Vue.set(state,'connection',conn)
+                //state.connection = conn;
             }
         
         },
@@ -173,6 +205,7 @@ export default new Vuex.Store({
 
                 state.broadcast[ message.from ].push(msg);
 
+                Vue.set(state.broadcast,message.from,state.broadcast[ message.from ]);
                 //state.broadcast.set(message.from,state.broadcast[ message.from ]);
             }
 
@@ -182,13 +215,16 @@ export default new Vuex.Store({
 
             for (var i = state.users.length - 1; i >= 0; i--) {
                 if (status == false && state.users[i].id == userId || state.users[i].id == userId && state.currentSession.id != userId ) {
-                    state.users[i].has_message = status;
+                    //state.users[i].has_message = status;
+                     Vue.set(state.users[i],'has_message',status);
                 }
             }
+            console.log(state.users);
         },
 
         SET_COUNT : (state, count) => {
-            state.currentCount = count;
+            //state.currentCount = count;
+            Vue.set(state,'currentCount',count);
         },
 
         SHOW_NOTICE : (state, msg, type) => {

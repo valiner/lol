@@ -7,22 +7,27 @@
     		<div class="menu">
     			<div>
     				<div v-if="this.$store.state.status == 'landing'">
-    				<blur :blur-amount=40 :url="imgurl">
-				      <p class="center"><img :src="imgurl" @click="showPopup"></p>
+    				<blur :blur-amount=40 :url="user.head_img">
+				      <p class="center"><img :src="user.head_img" @click="showPopup"></p>
+              <p style="text-align:center">{{user.nickname}}</p>
 				    </blur>
 				    </div>
 				    	
 				    <div v-else>
-				    	未登录{{this.$store.state.status}}
+             <blur :blur-amount=40 :url="'/static/img/xl.jpg'">
+              <p class="center"><img :src="'/static/img/xl.jpg'"></p>
+              <p style="text-align:center"><router-link :to="'/login'">未登陆,点击登陆</router-link></p>
+            </blur>
+				    
 				    </div>
     			</div>
     			<div>
-    				<ul class="set_ul">
+    				<!-- <ul class="set_ul">
     					<li><icon slot="icon" icon-style="menu-iconf" icon-class="xiugai"></icon><span>个人设置</span></li>
     					<li><icon slot="icon" icon-style="menu-iconf" icon-class="xiugai"></icon><span>我的收藏</span></li>
     					<li><icon slot="icon" icon-style="menu-iconf" icon-class="xiugai"></icon><span>我的帖子</span></li>
     			
-    				</ul>
+    				</ul> -->
     			</div>
     		</div>
     	</div>
@@ -32,12 +37,13 @@
 
 <script>
 import { XHeader, Blur, Popup, TransferDom} from 'vux'
+import store  from '../store/store'
 import icon from '../page/common/icon'
 export default{
   data () {
     return {
+      user: store.getters.userpro,
       showMenus: false,
-      imgurl: '/static/img/ez.jpg',
     }
   },
   props: ['title','showback','goback'],
@@ -87,8 +93,7 @@ export default{
 	    document.addEventListener("touchmove",mo,false);//禁止页面滑动
   	}
   },
-  mounted () {
-  	
+  async mounted () {
   },
 }
 </script>

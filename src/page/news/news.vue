@@ -14,11 +14,14 @@
 
           <div class="panel-new">
 
-           <keep-alive >
+           <!-- <keep-alive >
           <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive"></router-view>
  
+          </div> -->
+
+            <router-view></router-view>
           </div>
 
     </div>
@@ -49,6 +52,27 @@ export default {
       list2: list(),
       newselected: '最新',
       index: 0
+    }
+  },
+  methods: {
+    handleScroll () {
+      console.log(window.scrollY)
+      // console.log(this.bottom)
+      // if (window.scrollY >= this.bottom) {
+      //   console.log('load-more')
+      //   let page = this.currentPage + 1
+      //   let that = this
+      //   this.$parent.$axios.get('/api/newNews?page=' + page).then(function (response) {
+      //     // his.list = newdata.data.data
+      //     that.currentPage = page
+      //     that.list = [...that.list, ...response.data.data]
+      //     that.bottom += 938
+      //     console.log(that.list)
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error)
+      //   })
+      // }
     }
   },
   created () {
@@ -94,7 +118,7 @@ export default {
   padding-bottom:77px;
   height: 100%;
   position: relative;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 .vux-tab {

@@ -26,6 +26,7 @@
         </div>
   
        </router-link>
+       <load-more :tip="tip" :show-loading="true" v-if="showloadmore"></load-more>
 
       
 
@@ -34,15 +35,17 @@
 
 <script>
 import { verNews } from '../../../service/getData'
-import { Panel, Group, Radio } from 'vux'
+import { Panel, Group, Radio, LoadMore} from 'vux'
 import loading from '../../../components/loading'
 export default{
   data () {
     return {
       newsdata: [],
+      showloadmore: false,
       showloading: true,
-      currentPage: 0,
+      currentPage: 1,
       lastPage: 1,
+      tip:"正在加载",
       type: '5',
       bottom: 0,
       list: []
@@ -50,56 +53,48 @@ export default{
   },
   components: {
     Panel,
+    LoadMore,
     Group,
     Radio,
     loading
   },
   methods: {
-    // handleScroll () {
-    //   console.log(window.scrollY)
-    //   console.log(this.bottom)
-    //   if (window.scrollY >= this.bottom) {
-    //     console.log('load-more')
-    //     let page = this.currentPage + 1
-    //     let that = this
-    //     this.$parent.$axios.get('/api/newNews?page=' + page).then(function (response) {
-    //       // his.list = newdata.data.data
-    //       that.currentPage = page
-    //       that.list = [...that.list, ...response.data.data]
-    //       that.bottom += 938
-    //       console.log(that.list)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    //   }
-    // },
-    // onImgError (item, $event) {
-    //   console.log(item, $event)
-    // },
-    // clickItem (item) {
-    //   this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
-    // }
+    loadMore(){
+    let _this = this;
+    clearTimeout(this.timer);
+    this.timer=setTimeout(()=>{
+        var clientHeight=document.documentElement.clientHeight; //document.documentElement获取数据
+        var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
+        var scrollHeight=document.documentElement.scrollHeight;//document.documentElement获取数据
+        if(clientHeight+scrollTop+20>=scrollHeight){
+            this.currentPage++;
+            new verNews(this.currentPage).then(res=>{
+                if (res.data.data.length == 0) {
+                  _this.tip="暂无数据";
+                }else{
+                   for (var i = res.data.data.length - 1; i >= 0; i--) {
+                  _this.list.push(res.data.data[i]);
+                  }
+                }              
+            })
+        }
+    },100);
+   },
   },
   watch: {
   },
   created () {
-    console.log('xxxaa')
+  },
+  beforeDestroy(){
+    window.removeEventListener('scroll',this.loadMore,true);
   },
   async mounted () {
-    // console.log(this.$axios)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(7777777777777777)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    const newdata = await verNews()
-    // this.lastPage = newdata.data.message.lastPage
-    // this.currentPage = newdata.data.message.currentPage
+    window.addEventListener('scroll',this.loadMore,true);
+    const newdata = await verNews(this.currentPage)
     this.list = newdata.data.data
     console.log(this.list)
     this.showloading = false
+    this.showloadmore = true
   }
 }
 </script>

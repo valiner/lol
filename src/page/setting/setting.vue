@@ -31,6 +31,7 @@
 <script type="application/ecmascript">
   import { XHeader, Blur, TransferDom, Popup} from 'vux'
   import { userpro } from '../../service/getData'
+  import store  from '../../store/store'
   import { updateImg } from '../../service/getData'
   export default {
     components: {
@@ -61,11 +62,16 @@
         this.show = true;
       },
       savePic: function(item){
-        console.log(item);
+       
         new updateImg(item).then(res => {
             new userpro().then(res => {
               this.user = res.data.data;
+               console.log(res.data.data);
             }) 
+
+            this.$store.commit('SET_HEAD_IMG', item);
+
+
         })
       }
     }
