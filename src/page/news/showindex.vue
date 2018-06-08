@@ -34,7 +34,7 @@
         </span> 
       </tabbar-item>
       <tabbar-item link="bbs">
-       <icon slot="icon" icon-style="iconf" icon-class="paihang"></icon>
+       <icon slot="icon" icon-style="iconf" icon-class="xiaoxi"></icon>
         <span slot="label">讨论
         </span> 
       </tabbar-item>

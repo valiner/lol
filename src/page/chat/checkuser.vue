@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="load">
     loading
   </div>
 </template>
@@ -33,7 +33,15 @@ export default {
 </script>
 
 <style scoped>
-
+.load{
+  position: absolute;
+  top: 50%;
+  height: 240px;
+  margin-top: -120px; /* negative half of the height */
+  left:50%;
+  width: 100px;
+  margin-left: -50px;
+}
 
 
 

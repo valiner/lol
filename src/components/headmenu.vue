@@ -1,6 +1,9 @@
 <template>
-	<div class='main'>
+	<div class='main-head'>
+    <div class="head">
 	<x-header @on-click-back="goPre" :left-options="{showBack: showback,preventGoBack: goback}" :right-options="{showMore: true}" @on-click-more="showMenu">{{title}}</x-header>
+
+</div>
 	<transition name="right-menu">
     	<div v-if="showMenus">
     		<div class="left_blank" @click="hideMenu"></div>
@@ -101,7 +104,13 @@ export default{
 <style scoped>
 
 		
-
+    .head{
+      width: 100%;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      z-index: 100;
+    }
     .menu{
     	
     	width: 80%;

@@ -33,6 +33,7 @@
         goout: function(){
             let conn = store.getters.conn;
             conn.close();
+            this.$router.push({'path':'/bbs'});
           
         }
       },

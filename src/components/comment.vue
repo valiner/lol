@@ -14,8 +14,8 @@
         <div class="desc">
           <p class="title">{{item.content}}</p>
           <div class="desc-icon">
-            <div class="desc-item">{{item.commentcount.meta.count}}</div>
-            <div class="desc-item" @click="goComments(item.id)">{{item.commentcount.meta.count}}</div>
+          
+            <div class="desc-item" @click="goComments(item.id)">{{item.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="xiaoxi"></icon></div>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default {
 .item{
     padding: 12px 16px;
     background-color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border-top: 1px solid #ececec;
     border-bottom: 1px solid #ececec;
   }

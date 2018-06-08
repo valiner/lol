@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main-post">
   <head-menu :title="'评论'" :showback="true" :goback="'true'"></head-menu>
   <loading class="loading" v-if="showloading"></loading>
     <div class='posts'>
@@ -67,8 +67,13 @@ export default {
 </script>
 
 <style scoped>
-.main{
-  //background-color: #f6f6f6;
+.main-post{
+  padding-top: 46px;
+  background-color: #f6f6f6;
+}
+.posts{
+  background-color: #fff;
+  border-bottom: 1px solid #f6f6f6;
 }
 .add_post{
     position: fixed;

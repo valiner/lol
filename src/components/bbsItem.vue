@@ -11,8 +11,9 @@
         <div class="desc">
           <p class="title" @click="goComments(bbsItem.id)">{{bbsItem.title}}</p>
           <div class="desc-icon">
-            <div class="desc-item" >{{bbsItem.commentcount.meta.count}}</div>
-            <div class="desc-item">{{bbsItem.commentcount.meta.count}}</div>
+            <div class="desc-item" >{{bbsItem.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="faxian"></icon></div>
+            <div class="desc-item">{{bbsItem.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="xiaoxi"></icon></div>
+            
           </div>
         </div>
         
@@ -22,6 +23,7 @@
 
 <script>
 import { Panel } from 'vux'
+import icon from '../page/common/icon'
 export default{
   data () {
     return {
@@ -29,7 +31,8 @@ export default{
     }
   },
   components: {
-    Panel
+    Panel,
+    icon
   },
   methods: {
     goComments : function(id){

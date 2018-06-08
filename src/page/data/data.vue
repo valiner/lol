@@ -1,6 +1,6 @@
 <template>
   <div>
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">联盟资料</x-header>
+   <head-menu :title="'联盟资料'"></head-menu>
   <loading class="loading" v-if="showloading"></loading>
     <div class="main">
    	 <router-link v-for="item in dlist" class="item" :to="'dtype/' + item.dtype_url">
@@ -19,9 +19,11 @@
 import { XHeader, Tabbar, TabbarItem } from 'vux'
 import { dtype } from '../../service/getData'
 import icon from '../common/icon'
+import headMenu from '../../components/headMenu'
 import loading from '../../components/loading'
 export default {
   components: {
+    headMenu,
     XHeader,
     icon,
     Tabbar,
@@ -58,6 +60,9 @@ export default {
 }
 .item img{
   border-radius:10px
+}
+.main{
+   padding-top:46px;
 }
 
 

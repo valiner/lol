@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative">
 
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">资讯</x-header>
+  <head-menu :title="'资讯'"></head-menu>
     <div>
        <tab :line-width=2 active-color='#fc378c' v-model="index">
         <tab-item class="vux-center" :selected="newselected === item" v-for="(item, index) in list2" @click.native="newselected = item"><router-link :to="'newslist'+(index+1)" class="full">{{item}}</router-link></tab-item>
@@ -31,11 +31,13 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Tabbar, TabbarItem, Group, Cell, XHeader } from 'vux'
 import newsList from '../../components/newslist'
+import headMenu from '../../components/headMenu'
 import icon from '../common/icon'
 const list = () => ['最新', '电竞', '娱乐', '版本']
 export default {
   components: {
     Tab,
+    headMenu,
     TabItem,
     Swiper,
     SwiperItem,

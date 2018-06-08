@@ -38,6 +38,7 @@ import loading from '../../components/loading'
 
 export default {
   components: {
+    icon,
     headMenu,
     comment,
     icon,
@@ -67,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+.main{
+  padding-top: 46px;
+}
 .add_post{
     position: fixed;
     bottom: 73px;

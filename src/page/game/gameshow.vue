@@ -61,6 +61,7 @@ export default {
   }
   .maingame{
     padding-bottom: 77PX;
+     padding-top:46px;
   }
    .weui-tabbar{
   position:fixed;

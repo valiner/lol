@@ -1,8 +1,8 @@
 <template>
   <div style="position: relative">
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">统计</x-header>
+  <head-menu :title="'统计'"></head-menu>
   <loading class="loading" v-if="showloading"></loading>
-  <div class='main' v-else>
+  <div class='main-tongji' v-else>
     <group>
       <selector title="位置" :options="positionlist" v-model="dposition" @on-change="onchange"></selector>
     </group>
@@ -75,11 +75,13 @@
 <script>
 import { Group, Selector, XHeader, XTable, Tabbar, TabbarItem } from 'vux'
 import icon from '../common/icon'
+import headMenu from '../../components/headMenu'
 import { tongji } from '../../service/getData'
 import loading from '../../components/loading'
 const th = () => ['胜率', '登场', '被禁', '击杀', '死亡', '助攻', '造成伤害', '承受伤害', '总治疗量', '场均最大连杀','补刀数', '金钱', '排名变化']
 export default {
   components: {
+    headMenu,
     Group,
     Selector,
     XHeader,
@@ -219,8 +221,8 @@ export default {
    .vux-table:after{
     border-top: 0;
    }
-  .main{
-  padding-top:46px;
+  .main-tongji{
+    padding-top:46px;
   padding-bottom:77px;
    }
   .loading{

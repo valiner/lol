@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative">
-  <x-header :left-options="{showBack: false}" :right-options="{showMore: true}" @on-click-more="showMenus = true">战绩</x-header>
+  <head-menu :title="'战绩'"></head-menu>
   <div class="main_record">
     <group>
       <selector title="大区" :options="list" v-model="defaultValue"></selector>
@@ -22,10 +22,12 @@
 <script>
 import { Tab, TabItem, Tabbar, TabbarItem, XHeader, Selector, Group, XInput, XButton } from 'vux'
 import icon from '../common/icon'
+import headMenu from '../../components/headMenu'
 // import { searchRecord } from '../../service/getData'
 export default {
   components: {
     Tab,
+    headMenu,
     TabItem,
     Tabbar,
     TabbarItem,
