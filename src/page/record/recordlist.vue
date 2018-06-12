@@ -35,17 +35,13 @@ export default{
     this.areaid = this.$route.params.areaid
     this.userid = this.$route.params.userid
     recordlist(this.areaid, this.userid).then(res => {
-      console.log(this)
       if (!res.data) {
         alert('服务器繁忙，稍后再试')
       } else if (res.data.status === 0) {
         this.gamedata = res.data.data
-        console.log(this.gamedata)
         this.reload = false
       } else {
         this.reload = true
-        console.log(res.data.message)
-        console.log(this.reload)
       }
     })
   },

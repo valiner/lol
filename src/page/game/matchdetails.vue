@@ -53,7 +53,6 @@ export default{
   },
   methods: {
     govideo: function (item) {
-      console.log(item.gvideo_url);
       // this.$router.push({ path: `/videopaly/${item.gvideo_url}` })
       this.$router.push({name: 'videopaly', params: { urls: item.gvideo_url }})
     }

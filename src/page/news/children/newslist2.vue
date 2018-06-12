@@ -63,7 +63,14 @@ export default{
     clearTimeout(this.timer);
     this.timer=setTimeout(()=>{
         var clientHeight=document.documentElement.clientHeight; //document.documentElement获取数据
-        var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
+        //var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
+        //兼容手机浏览器
+        if(document.body.scrollTop){ 
+        var scrollTop=document.body.scrollTop;
+        }
+        else{ 
+        var scrollTop=document.documentElement.scrollTop;
+        }
         var scrollHeight=document.documentElement.scrollHeight;//document.documentElement获取数据
         if(clientHeight+scrollTop+20>=scrollHeight){
             this.currentPage++;
@@ -92,13 +99,6 @@ export default{
     window.removeEventListener('scroll',this.loadMore,true);
   },
   async mounted () {
-    // console.log(this.$axios)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(7777777777777777)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
     
     window.addEventListener('scroll',this.loadMore,true);
     const newdata = await lplNews(this.currentPage)

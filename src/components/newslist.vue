@@ -55,46 +55,13 @@ export default{
     loading
   },
   methods: {
-    // handleScroll () {
-    //   console.log(window.scrollY)
-    //   console.log(this.bottom)
-    //   if (window.scrollY >= this.bottom) {
-    //     console.log('load-more')
-    //     let page = this.currentPage + 1
-    //     let that = this
-    //     this.$parent.$axios.get('/api/newNews?page=' + page).then(function (response) {
-    //       // his.list = newdata.data.data
-    //       that.currentPage = page
-    //       that.list = [...that.list, ...response.data.data]
-    //       that.bottom += 938
-    //       console.log(that.list)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    //   }
-    // },
-    // onImgError (item, $event) {
-    //   console.log(item, $event)
-    // },
-    // clickItem (item) {
-    //   this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
-    // }
   },
   props: ['newselected'],
   watch: {
   },
   created () {
-    console.log('xxxaa')
   },
   async mounted () {
-    // console.log(this.$axios)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(7777777777777777)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
     let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
     this.bottom = 938 - height + 160
     window.addEventListener('scroll', this.handleScroll)
@@ -103,7 +70,6 @@ export default{
       this.lastPage = newdata.data.message.lastPage
       this.currentPage = newdata.data.message.currentPage
       this.list = newdata.data.data
-      console.log(this.list)
     }
     if (this.newselected === '电竞') {
       const lpldata = await lplNews()

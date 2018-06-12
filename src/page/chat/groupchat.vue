@@ -1,10 +1,7 @@
 <template>
   <div class="room">
     <!-- <span @click="goout()">退出</span> -->
-    <div class="slide-bar">
-      <user></user>
-      <list></list>
-    </div>
+   
     <div class="main">
       <message></message>
       <user-text></user-text>
@@ -44,14 +41,23 @@ export default {
     goout: function(){
       this.conn.close();
       
+    },
+    logout: function(){
+      this.conn.close();
+      this.$router.push({'path':'/bbs'});
     }
+  },
+  beforeDestroy(){
+     window.removeEventListener('popstate',this.logout,false);
+      //window.addEventListener("popstate", this.logout, false)
   },
   computed: {
   },
   created : function(){
             let ss = this.$route.params
             let _this = this;
-            let conn = new WebSocket('ws://192.168.10.10:9502?nicknamex='+ss.user.nickname+'&headimg='+ss.user.head_img);
+            let conn = new WebSocket('ws://120.77.154.86:9502?nicknamex='+ss.user.nickname+'&headimg='+ss.user.head_img);
+            //let conn = new WebSocket('ws://120.77.154.86:9502?nicknamex='+ss.user.nickname+'&headimg='+ss.user.head_img);
             this.conn = conn;
 
             conn.onopen = function(evt){
@@ -69,7 +75,6 @@ export default {
             }
             conn.onmessage = function(evt){
                 let msg = JSON.parse(evt.data);
-                console.log(msg);
 
                 switch(msg.type){
                     case 'connect':
@@ -80,9 +85,7 @@ export default {
                     case 'disconnect':
                          store.dispatch('removeUser',msg.data.id);
                          //_this.removeUser(msg.data.id);
-                         store.dispatch('setCount',msg.data.count);
-                         console.log('disconnect');
-                 
+                         store.dispatch('setCount',msg.data.count);                 
                         break;
                     case 'self_init':
                         store.dispatch('setUser',msg.data);
@@ -99,13 +102,13 @@ export default {
                         break;
                 }
             }
-            console.log(conn);
+          
             store.dispatch('setConn',conn);
 
            
         },
-  async mounted () {
-  
+  mounted () {
+    window.addEventListener("popstate", this.logout, false)
   }
 }
 </script>
@@ -121,16 +124,11 @@ export default {
           height:100%;
         }
 
-        .slide-bar{
-          float: left;
-          width: 120px;
-          background:#2e3238;
-          color: #f4f4f4;
-        }
+       
         .main{
         
          
-          margin-left:120px;
+       
           background: #eee;
           
           flex-direction: column;

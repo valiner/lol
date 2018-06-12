@@ -6,7 +6,7 @@
         <div class="post_title">{{post.title}}</div>
         <div class="info">
           <span class="post_name">{{post.user.data.nickname}}</span>
-          <span class="post_date">{{post.add_time}}</span>
+          <span class="post_date">{{post.created_at}}</span>
         </div>  
         <div class="post_content">
           {{post.content}}
@@ -20,7 +20,7 @@
 
 
 
-  <router-link :to="{path:'/addpost',query: {type: 'reply',id: post_id}}" :title="回复帖子"><span class="add_post"></span></router-link>
+  <router-link :to="{path:'/addpost',query: {type: 'reply',id: post_id}}" :title="回复帖子"><span class="add_post"><icon slot="icon" icon-style="iconm" icon-class="xiugai"></icon></span></router-link>
     
   </div>
 </template>
@@ -61,7 +61,6 @@ export default {
      this.post = res.data.data;
      var res = await commentlist(this.post_id);
      this.comments = res.data.data;
-     console.log(this.comments)
   }
 }
 </script>
@@ -106,7 +105,7 @@ export default {
     padding: 0 10px;
   }
   .post_content{
-    padding: 0 10px;
+    padding: 20px 10px;
     font-size: 16px;
     line-height: 24px;
       overflow: hidden;

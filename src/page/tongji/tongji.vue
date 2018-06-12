@@ -124,19 +124,9 @@ export default {
   computed: {
   },
   async mounted () {
-    // console.log(this.$router)
-    // console.log(this.router)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
     let res = await tongji()
-    console.log(res);
     this.tongjilist = res.data
     this.showlist = this.tongjilist
-    console.log(this.tongjilist)
     this.showloading = false
   }
 }

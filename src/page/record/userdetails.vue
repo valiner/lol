@@ -72,10 +72,10 @@ export default {
     // dx3/2955752234
     // this.areaid = 'dx3'
     // this.userid = 2955752234
-    console.log(this.areaid)
+
     const that = this
     this.$axios.get('/api/lsDetails/' + this.areaid + '/' + this.userid + '/').then(function (response) {
-      console.log(response.data)
+
       if (!response.data) {
         alert('服务器繁忙，稍后再试')
       } else if (response.data.status === 0) {
@@ -85,11 +85,11 @@ export default {
         // console.log(this.datalist)
       } else {
         that.reload = true
-        console.log(response.data.message)
+
       }
     })
     .catch(function (error) {
-      console.log(error)
+
     })
   },
   methods: {

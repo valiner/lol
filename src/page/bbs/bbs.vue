@@ -11,7 +11,7 @@
         <bbs-item :bbsItem="item"></bbs-item>
       </div>
     </div>
-    <router-link :to="{path:'/addpost',query: {type: 'post'}}"><span class="add_post"></span></router-link>
+    <router-link :to="{path:'/addpost',query: {type: 'post'}}"><span class="add_post"><icon slot="icon" icon-style="iconm" icon-class="xiugai"></icon></span></router-link>
     
   </div>
 </template>
@@ -46,10 +46,14 @@ export default {
   },
   computed: {
   },
+  activated: function() {  
+    new posts().then(res => {
+      this.bbsList = res.data.data;
+    })
+  },
   async mounted () {
     var res = await posts();
     this.bbsList = res.data.data;
-    console.log(this.bbsList)
   }
 }
 </script>

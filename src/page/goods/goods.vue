@@ -43,16 +43,6 @@ export default {
     }
   },
   async mounted () {
-    // console.log(this.$router)
-    // console.log(this.router)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    // const gg = await newsNew()
-    // console.log(gg)
   }
 }
 </script>

@@ -57,40 +57,10 @@ export default {
     }
   },
   methods: {
-    handleScroll () {
-      console.log(window.scrollY)
-      // console.log(this.bottom)
-      // if (window.scrollY >= this.bottom) {
-      //   console.log('load-more')
-      //   let page = this.currentPage + 1
-      //   let that = this
-      //   this.$parent.$axios.get('/api/newNews?page=' + page).then(function (response) {
-      //     // his.list = newdata.data.data
-      //     that.currentPage = page
-      //     that.list = [...that.list, ...response.data.data]
-      //     that.bottom += 938
-      //     console.log(that.list)
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error)
-      //   })
-      // }
-    }
   },
   created () {
-    console.log('xxx')
   },
-  async mounted () {
-    // console.log(this.$router)
-    // console.log(this.router)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    // const gg = await newsNew()
-    // console.log(gg)
+  async mounted () {;
   }
 }
 </script>

@@ -145,7 +145,6 @@ export default {
   },
   methods: {
     onItemClick (index) {
-      console.log('on item click:', index)
     },
     addTab () {
       if (this.list2.length < 5) {

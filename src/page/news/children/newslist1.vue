@@ -48,7 +48,8 @@ export default{
       type: '5',
       bottom: 0,
       tip:"正在加载",
-      list: []
+      list: [],
+      timer:{}
     }
   },
   components: {
@@ -67,8 +68,16 @@ export default{
     clearTimeout(this.timer);
     this.timer=setTimeout(()=>{
         var clientHeight=document.documentElement.clientHeight; //document.documentElement获取数据
-        var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
+        //兼容手机浏览器
+        if(document.body.scrollTop){ 
+        var scrollTop=document.body.scrollTop;
+        }
+        else{ 
+        var scrollTop=document.documentElement.scrollTop;
+        }
+        //var scrollTop=document.documentElement.scrollTop; //document.documentElement获取数据
         var scrollHeight=document.documentElement.scrollHeight;//document.documentElement获取数据
+
         if(clientHeight+scrollTop+20>=scrollHeight){
             this.currentPage++;
             new newNews(this.currentPage).then(res=>{
@@ -88,7 +97,6 @@ export default{
     },100);
    },
     onImgError (item, $event) {
-      console.log(item, $event)
     },
     clickItem (item) {
       this.$parent.$router.push({ path: `/newsdetails/${item.newid}` })
@@ -101,7 +109,6 @@ export default{
   async mounted () {
     window.addEventListener('scroll',this.loadMore,true);
     const newdata = await newNews(this.currentPage)
-    console.log(newdata.data.data);
     this.list = newdata.data.data
     this.showloading = false;
     this.showloadmore = true;

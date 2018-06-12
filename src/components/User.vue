@@ -35,7 +35,7 @@
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
         
     .card{
         display: flex;
@@ -77,20 +77,6 @@
             }
             .dot-red{
                 background: #ff0000;
-            }
-        }
-
-
-        .search{
-            input{
-                margin-top: 10px;
-                width: 100%;
-                background: #26292e;
-                border: 1px solid #3a3a3a;
-                height: 30px;
-                border-radius: 4px;
-                color: #fff;
-                padding: 10px;
             }
         }
     }

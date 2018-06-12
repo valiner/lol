@@ -18,7 +18,6 @@
             actions : actions
         },
         created : function(){
-            console.log(233);
         }
         
     }

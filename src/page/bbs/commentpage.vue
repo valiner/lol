@@ -24,7 +24,7 @@
   </div>
 
 
-  <router-link :to="{path:'/addpost',query: {type: 'replycomment',post_id: post_id,parent_id: comment_id}}" :title="回复帖子"><span class="add_post"></span></router-link>
+  <router-link :to="{path:'/addpost',query: {type: 'replycomment',post_id: post_id,parent_id: comment_id}}" :title="回复帖子"><span class="add_post"><icon slot="icon" icon-style="iconm" icon-class="xiugai"></icon></span></router-link>
     
   </div>
 </template>
@@ -57,7 +57,6 @@ export default {
   computed: {
   },
   async mounted () {
-    console.log(this.$route);
      this.comment_id = this.$route.params.id;
      this.post_id = this.$route.query.post_id;
      var res = await commentChildList(this.comment_id);

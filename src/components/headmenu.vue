@@ -96,7 +96,9 @@ export default{
 	    document.addEventListener("touchmove",mo,false);//禁止页面滑动
   	}
   },
-  async mounted () {
+  mounted () {
+    let ss = store.state.userpro;
+    console.log();
   },
 }
 </script>
@@ -117,7 +119,7 @@ export default{
     	height: 1000px;
        /* background: rgb(50, 60, 60);*/
         background: #c5c5c5;
-	    position: absolute;
+	    position: fixed;
 	    right: 0;
 	    top: 0;
 	    bottom: 0;
@@ -127,7 +129,7 @@ export default{
     .left_blank{
     	width: 20%;
     	height: 1000px;
-	    position: absolute;   
+	    position: fixed;   
 	    top: 0;   
 	    left: 0;        
 	    background-color: black;   

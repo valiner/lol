@@ -45,7 +45,6 @@ export default{
       this.herolist = response.data.data
     })
     .catch(function (error) {
-      console.log(error)
     })
   }
 }

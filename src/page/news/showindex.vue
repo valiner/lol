@@ -8,24 +8,21 @@
 
 
     <tabbar>
-    <keep-alive include="tabbar-item">
+  
       <tabbar-item selected link="news">
         <icon slot="icon" icon-style="iconf" icon-class="neirong2"></icon>
         <span slot="label">资讯</span>
       </tabbar-item>
-      </keep-alive>
-      <keep-alive>
       <tabbar-item link="gameshow">
         <icon slot="icon" icon-style="iconf" icon-class="huodongxiangqu"></icon>
         <span slot="label">赛事</span>
       </tabbar-item>
-      </keep-alive>
       <tabbar-item link="recordshow">
         <icon slot="icon" icon-style="iconf" icon-class="sousuo"></icon>
         <span slot="label">战绩</span>
       </tabbar-item>
        <tabbar-item link="data">
-         <icon slot="icon" icon-style="iconf" icon-class="xiugai"></icon>
+         <icon slot="icon" icon-style="iconf" icon-class="qitadingdan"></icon>
         <span slot="label">资料</span>
       </tabbar-item>
       <tabbar-item link="tongji">
@@ -69,16 +66,6 @@ export default {
     }
   },
   async mounted () {
-    // console.log(this.$router)
-    // console.log(this.router)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    // const gg = await newsNew()
-    // console.log(gg)
   }
 }
 </script>

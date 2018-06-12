@@ -9,7 +9,7 @@ import * as types from './store/types'
 import router from './router'
 
 // axios 配置
-axios.defaults.timeout = 1000;
+axios.defaults.timeout = 3000;
 //axios.defaults.baseURL = 'http://lolapi.example';
 
 // http request 拦截器

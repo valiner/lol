@@ -6,7 +6,10 @@
             <div v-if="this.$store.state.status == 'landing'">
             <blur :blur-amount=40 :url="user.head_img==''?imgurl:user.head_img">
               <p class="center"><img :src="user.head_img==''?imgurl:user.head_img" @click="showPopup"></p>
+              <p style="text-align:center;color:#f1f1f1" @click="showPopup">更换头像</p>
             </blur>
+
+
             </div>
               
             <div v-else>
@@ -49,7 +52,7 @@
         imgurl: '/static/img/xx.jpg',
         user: {},
         show: false,
-        imgarr: ['/static/img/xx.jpg','/static/img/ez.jpg','/static/img/wj.jpg']
+        imgarr: ['/static/img/xx.jpg','/static/img/ez.jpg','/static/img/wj.jpg','/static/img/dw.jpg','/static/img/gd.jpg','/static/img/hz.jpg','/static/img/sd.jpg','/static/img/xl.jpg','/static/img/tm.jpg','/static/img/lt.jpg','/static/img/fyt.jpg','/static/img/hn.jpg']
       }
     },
     async mounted(){
@@ -62,11 +65,9 @@
         this.show = true;
       },
       savePic: function(item){
-       
         new updateImg(item).then(res => {
             new userpro().then(res => {
               this.user = res.data.data;
-               console.log(res.data.data);
             }) 
 
             this.$store.commit('SET_HEAD_IMG', item);

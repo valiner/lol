@@ -33,7 +33,6 @@
         methods: {
         },
         created: function(){
-            console.log(store.getters);
         }
     }
 </script>

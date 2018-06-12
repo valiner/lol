@@ -12,7 +12,10 @@ export default new Vuex.Store({
     actions,
     getters,
     state: {
-        userpro: {},
+        userpro: {
+            nickname: '',
+            head_img: ''
+        },
         user: {},
         token: null,
         title: '',
@@ -87,7 +90,10 @@ export default new Vuex.Store({
             }
         },
         SET_USERPRO: (state, user) => {
-            Vue.set(state,'userpro',user);
+            Vue.set(state.userpro,'head_img',user.head_img);
+            Vue.set(state.userpro,'nickname',user.nickname);
+            localStorage.head_img = user.head_img;
+            localStorage.nickname = user.nickname;
         },
         SET_HEAD_IMG: (state, img) => {
             Vue.set(state.userpro,'head_img',img);

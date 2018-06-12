@@ -2,8 +2,8 @@
   <div class="main">
   <x-header>{{htitle}}<a slot="right" @click="send">发表</a></x-header>
    <group>
-      <x-input :placeholder="'标题1dd'" v-model="title" v-if="show_title"></x-input>
-      <x-textarea :max="1000" v-model="content" name="description" :placeholder="'我有话要说.1dd..'" :height="400"></x-textarea>
+      <x-input :placeholder="'标题'" v-model="title" v-if="show_title"></x-input>
+      <x-textarea :max="1000" v-model="content" name="description" :placeholder="'我有话要说...'" :height="400"></x-textarea>
 
     </group>
   </div>

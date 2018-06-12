@@ -46,22 +46,11 @@ export default {
     }
   },
   async mounted () {
-    // console.log(this.$router)
-    // console.log(this.router)
-    // this.$axios.get('/api/school').then(function (response) {
-    //   console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    // const gg = await newsNew()
-    // console.log(gg)
   },
   methods: {
     search () {
       const that = this
       this.$axios.get('/api/searchRecord/' + this.defaultValue + '/' + this.username).then(function (response) {
-        console.log(response.data)
         if (!response.data) {
           alert('服务器繁忙稍后再试')
         } else if (response.data.status === 0) {

@@ -49,6 +49,9 @@ const routes = [
     path: '/showindex',
     name: 'showindex',
     component: showindex,
+    meta: {
+      keepAlive: true
+    },
     children: [{
       path: '',
       redirect: '/news'
@@ -57,32 +60,35 @@ const routes = [
       name: 'gameshow',
       component: gameshow,
       meta: {
+        keepAlive: true
       }
     }, {
       path: '/login',
       name: 'login',
       component: login,
       meta: {
-        keepAlive: true
+
       }
     }, {
       path: '/register',
       name: 'register',
       component: register,
       meta: {
-        keepAlive: true
+
       }
     }, {
       path: '/bbs',
       name: 'bbs',
       component: bbs,
       meta: {
+        keepAlive: true
       }
     }, {
       path: '/news',
       name: 'news',
       component: news,
       meta: {
+        keepAlive: true
       },
       children: [{
         path: '',
@@ -94,24 +100,28 @@ const routes = [
         name: 'newslist1',
         component: newslist1,
         meta: {
+          keepAlive: true
         }
       }, {
         path: '/newslist2',
         name: 'newslist2',
         component: newslist2,
         meta: {
+          keepAlive: true
         }
       }, {
         path: '/newslist3',
         name: 'newslist3',
         component: newslist3,
         meta: {
+          keepAlive: true
         }
       }, {
         path: '/newslist4',
         name: 'newslist4',
         component: newslist4,
         meta: {
+          keepAlive: true
         }
       }]
     }, {
@@ -126,40 +136,56 @@ const routes = [
       name: 'data',
       component: data,
       meta: {
+        keepAlive: true
       }
     }, {
       path: '/tongji',
       name: 'tongji',
       component: tongji,
       meta: {
-        
+        keepAlive: true
       }
     }]
   },
   {
     path: '/dtype/hero',
     name: 'hero',
-    component: hero
+    component: hero,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/herodetails/:heroid',
     name: 'herodetails',
-    component: herodetails
+    component: herodetails,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/dtype/goods',
     name: 'goods',
-    component: goods
+    component: goods,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/goodsdetails/:goodsid',
     name: 'goodsdetails',
-    component: goodsdetails
+    component: goodsdetails,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/dtype/skill',
     name: 'skill',
-    component: skill
+    component: skill,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/skilldetails/:skillid',
@@ -174,7 +200,10 @@ const routes = [
   {
     path: '/matchdetails/:game_id',
     name: 'matchdetails',
-    component: matchdetails
+    component: matchdetails,
+    meta: {
+        keepAlive: true
+    }
   },
   {
     path: '/recordlist/:areaid/:userid',
@@ -205,6 +234,7 @@ const routes = [
       name: 'addpost',
       component: addpost,
       meta: {
+         requireAuth: true
       }
     }, {
       path: '/setting',
@@ -251,6 +281,15 @@ if (window.localStorage.getItem('token')) {
     store.commit(types.LOGIN, window.localStorage.getItem('token'));
     store.commit(types.STATUS, 'landing');
 }
+
+// 页面刷新时，重新赋值userpro
+if (window.localStorage.getItem('nickname')) {
+  let userpro= {
+            nickname: window.localStorage.getItem('nickname'),
+            head_img: window.localStorage.getItem('head_img')
+    };
+    store.commit('SET_USERPRO', userpro);
+  }
 
 const router = new Router({
     routes

@@ -40,7 +40,7 @@
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     .list{
         height: 479px;
         overflow-y: scroll;

@@ -27,10 +27,8 @@ export default{
     }
   },
   async mounted () {
-    // console.log(this.$router)
     this.newid = this.$route.params.newid
     const details = await newDetails(this.newid)
-    console.log(details.data.data)
     this.newcontent = details.data.data
     this.showloading = false
   },

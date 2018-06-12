@@ -6,12 +6,12 @@
             <div class="author-avator" :style="{backgroundImage: 'url(' + bbsItem.user.data.head_img + ')'}"></div>
             <span class="author-name">{{bbsItem.user.data.nickname}}</span>
           </div>
-          <div class="right">{{bbsItem.add_time}}</div>
+          <div class="right">{{bbsItem.created_at}}</div>
         </div>
         <div class="desc">
           <p class="title" @click="goComments(bbsItem.id)">{{bbsItem.title}}</p>
           <div class="desc-icon">
-            <div class="desc-item" >{{bbsItem.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="faxian"></icon></div>
+            <!-- <div class="desc-item" >{{bbsItem.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="faxian"></icon></div> -->
             <div class="desc-item">{{bbsItem.commentcount.meta.count}} <icon slot="icon" icon-style="icons" icon-class="xiaoxi"></icon></div>
             
           </div>

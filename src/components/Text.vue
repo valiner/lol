@@ -1,7 +1,12 @@
 <template>
     <div>
     <div class="user-text">
-        <textarea name="" id="" placeholder="Press enter to send" v-model="content" v-on:keyup.enter="send"></textarea>
+        <group>
+        <x-input title="" class="weui-vcode" v-model="content" @on-enter="send">
+              <x-button slot="right" action-type="button"  @click.native="send" mini>发送</x-button>
+        </x-input>
+    </group>
+       <!--  <textarea name="" id="" placeholder="Press enter to send" v-model="content" v-on:keyup.enter="send"></textarea> -->
     </div>
     <!-- <div class="text-footer">
         <button v-on:click="send">发送</button>
@@ -11,8 +16,8 @@
 
 
 <script>
-
     import store from '../store/store'
+    import {XInput, XButton, Group} from 'vux'
 
     export default {
         data(){
@@ -21,6 +26,11 @@
                 currentSession:store.getters.currentSession,
                 content : ''
             }
+        },
+        components: {
+          XButton,
+          XInput,
+          Group
         },
         methods : {
             send(e){
@@ -51,36 +61,9 @@
 
 
 <style lang="less">
-    .user-text{
-        height: 120px;
-        border-top: 1px solid #ddd;
-
-        textarea{
-            padding: 10px;
-            resize: none;
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-        }
-    }
-    .text-footer{
-        display: flex;
-        padding: 10px 20px;
-        background: #fff;
-        justify-content: flex-end;
-        align-items: flex-end;
-        button{
-            background: #fff;
-            padding: 3px 20px;
-            color: #222;
-            border: 1px solid #c1c1c1;
-            border-radius: 3px;
-        }
-        span{
-            font-size: 14px;
-            color: #999;
-            margin-right: 10px;
-        }
-    }
+   .user-text{
+    width:100%;
+    position:absolute;
+    bottom:5px;
+   }
 </style>

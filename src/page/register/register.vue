@@ -23,6 +23,7 @@
   import { verification, register} from '../../service/getData'
   import * as types from '../../store/types'
   import { userpro } from '../../service/getData'
+  import { updateImg } from '../../service/getData'
   import axios from 'axios'
   export default {
     components: {
@@ -43,7 +44,8 @@
         codetext: '发送验证码',
         wait: 60,
         code: '',
-        btn_disable: false
+        btn_disable: false,
+        imgarr: ['/static/img/xx.jpg','/static/img/ez.jpg','/static/img/wj.jpg','/static/img/dw.jpg','/static/img/gd.jpg','/static/img/hz.jpg','/static/img/sd.jpg','/static/img/xl.jpg','/static/img/tm.jpg','/static/img/lt.jpg','/static/img/fyt.jpg','/static/img/hn.jpg']
       }
     },
     mounted(){
@@ -52,11 +54,12 @@
     },
     methods: {
       sendCode: function(){
-        console.log(this.email);
+ 
         axios.get('/api/verification/' + this.email).then(res => {
+          this.$vux.toast.text('已发送验证码30分钟内有效');
+          this.setTime(); 
         }).catch(err => {
-            this.$vux.toast.text('已发送验证码30分钟内有效');
-            this.setTime();  
+          this.$vux.toast.text(err.message);
         })
         // new verification(this.email)
       },
@@ -66,10 +69,14 @@
             let token = res.data.data.token;
             this.$store.commit(types.LOGIN, token);
             this.$store.commit(types.STATUS, 'landing');
-             new userpro().then(res => {
+            new userpro().then(res => {
                  let user = res.data.data;
                  this.$store.commit('SET_USERPRO', user);
               });
+            let index = Math.round(Math.random()*(this.imgarr.length-1));
+            let img = this.imgarr[index];
+            new updateImg(img).then(res => {
+            })
             let redirect = decodeURIComponent(this.$route.query.redirect || '/');
             this.$router.push({
               path: redirect

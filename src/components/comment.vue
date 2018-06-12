@@ -9,7 +9,7 @@
             <div class="author-avator" :style="{backgroundImage: 'url(' + item.user.data.head_img + ')'}"></div>
             <span class="author-name">{{item.user.data.nickname}}</span>
           </div>
-          <div class="right">{{item.add_time}}</div>
+          <div class="right">{{item.created_at}}</div>
         </div>
         <div class="desc">
           <p class="title">{{item.content}}</p>
