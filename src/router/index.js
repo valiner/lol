@@ -152,7 +152,7 @@ const routes = [
     name: 'hero',
     component: hero,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -160,7 +160,7 @@ const routes = [
     name: 'herodetails',
     component: herodetails,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -168,7 +168,7 @@ const routes = [
     name: 'goods',
     component: goods,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -176,7 +176,7 @@ const routes = [
     name: 'goodsdetails',
     component: goodsdetails,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -184,7 +184,7 @@ const routes = [
     name: 'skill',
     component: skill,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -202,7 +202,7 @@ const routes = [
     name: 'matchdetails',
     component: matchdetails,
     meta: {
-        keepAlive: true
+      keepAlive: true
     }
   },
   {
@@ -230,86 +230,84 @@ const routes = [
     name: 'xpanle',
     component: xpanle
   }, {
-      path: '/addpost',
-      name: 'addpost',
-      component: addpost,
-      meta: {
-         requireAuth: true
-      }
-    }, {
-      path: '/setting',
-      name: 'setting',
-      component: setting,
-      meta: {
-      }
-    },{
-      path: '/posts/:id',
-      name: 'posts',
-      component: posts,
-      meta: {
-      }
-    },{
-      path: '/comments/:id/comments',
-      name: 'commentpage',
-      component: commentpage,
-      meta: {
-      }
-    }, {
-      path: '/comment',
-      name: 'comment',
-      component: comment,
-      meta: {
-      }
-    }, {
-      path: '/groupchat',
-      name: 'groupchat',
-      component: groupchat,
-      meta: {
-        requireAuth: true
-      }
-    }, {
-      path: '/checkuser',
-      name: 'checkuser',
-      component: checkuser,
-      meta: {
-      }
+    path: '/addpost',
+    name: 'addpost',
+    component: addpost,
+    meta: {
+      requireAuth: true
     }
-];
+  }, {
+    path: '/setting',
+    name: 'setting',
+    component: setting,
+    meta: {
+    }
+  }, {
+    path: '/posts/:id',
+    name: 'posts',
+    component: posts,
+    meta: {
+    }
+  }, {
+    path: '/comments/:id/comments',
+    name: 'commentpage',
+    component: commentpage,
+    meta: {
+    }
+  }, {
+    path: '/comment',
+    name: 'comment',
+    component: comment,
+    meta: {
+    }
+  }, {
+    path: '/groupchat',
+    name: 'groupchat',
+    component: groupchat,
+    meta: {
+      requireAuth: true
+    }
+  }, {
+    path: '/checkuser',
+    name: 'checkuser',
+    component: checkuser,
+    meta: {
+    }
+  }
+]
 
 // 页面刷新时，重新赋值token
 if (window.localStorage.getItem('token')) {
-    store.commit(types.LOGIN, window.localStorage.getItem('token'));
-    store.commit(types.STATUS, 'landing');
+  store.commit(types.LOGIN, window.localStorage.getItem('token'))
+  store.commit(types.STATUS, 'landing')
 }
 
 // 页面刷新时，重新赋值userpro
 if (window.localStorage.getItem('nickname')) {
-  let userpro= {
-            nickname: window.localStorage.getItem('nickname'),
-            head_img: window.localStorage.getItem('head_img')
-    };
-    store.commit('SET_USERPRO', userpro);
+  let userpro = {
+    nickname: window.localStorage.getItem('nickname'),
+    head_img: window.localStorage.getItem('head_img')
   }
+  store.commit('SET_USERPRO', userpro)
+}
 
 const router = new Router({
-    routes
-});
-
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(r => r.meta.requireAuth)) {
-        if (store.state.token) {
-            next();
-        }
-        else {
-            next({
-                path: '/login',
-                query: {redirect: to.fullPath}
-            })
-        }
-    }
-    else {
-        next();
-    }
+  routes
 })
 
-export default router;
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(r => r.meta.requireAuth)) {
+    if (store.state.token) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

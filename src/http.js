@@ -9,40 +9,40 @@ import * as types from './store/types'
 import router from './router'
 
 // axios 配置
-axios.defaults.timeout = 3000;
-//axios.defaults.baseURL = 'http://lolapi.example';
+axios.defaults.timeout = 3000
+// axios.defaults.baseURL = 'http://lolapi.example';
 
 // http request 拦截器
 axios.interceptors.request.use(
     config => {
-        if (store.state.token) {
-            config.headers.Authorization = `Bearer ${store.state.token}`;
-        }
-        return config;
+      if (store.state.token) {
+        config.headers.Authorization = `Bearer ${store.state.token}`
+      }
+      return config
     },
     err => {
-        return Promise.reject(err);
-    });
+      return Promise.reject(err)
+    })
 
 // http response 拦截器
 axios.interceptors.response.use(
     response => {
-        return response;
+      return response
     },
     error => {
-        if (error.response) {
-            switch (error.response.status) {
-                case 401:
+      if (error.response) {
+        switch (error.response.status) {
+          case 401:
                     // 401 清除token信息并跳转到登录页面
-                    store.commit(types.LOGOUT);
-                    router.replace({
-                        path: 'login',
-                        query: {redirect: router.currentRoute.fullPath}
-                    })
-            }
+            store.commit(types.LOGOUT)
+            router.replace({
+              path: 'login',
+              query: {redirect: router.currentRoute.fullPath}
+            })
         }
+      }
         // console.log(JSON.stringify(error));//console : Error: Request failed with status code 402
-        return Promise.reject(error.response.data)
-    });
+      return Promise.reject(error.response.data)
+    })
 
-export default axios;
+export default axios
