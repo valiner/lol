@@ -60,7 +60,8 @@ export default {
   },
   created () {
   },
-  async mounted () {;
+  async mounted () { 
+;
   }
 }
 </script>
@@ -86,7 +87,6 @@ export default {
 }
 
 .panel-new{
-  padding-top:83px;
   padding-bottom:77px;
   height: 100%;
   position: relative;

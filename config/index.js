@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://lolapi.example',
+        target: 'http://123.207.238.149:8091',
         changeOrigin: true,
         pathRewrite: {
                     '^/api': '/api'
